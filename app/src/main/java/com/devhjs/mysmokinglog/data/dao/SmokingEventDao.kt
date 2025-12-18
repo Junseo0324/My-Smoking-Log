@@ -41,7 +41,7 @@ interface SmokingEventDao {
         ORDER BY timestamp DESC 
         LIMIT 1
     """)
-    suspend fun getLastEvent(): SmokingEventEntity?
+    suspend fun getLastEvent(): SmokingEventEntity
 
     // 기간별 이벤트 (주간/월간 통계)
     @Query("""

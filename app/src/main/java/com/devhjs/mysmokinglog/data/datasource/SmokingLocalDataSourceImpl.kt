@@ -18,7 +18,7 @@ class SmokingLocalDataSourceImpl(
         return smokingEventDao.getEventsByDate(date)
     }
 
-    override suspend fun getLastEvent(): SmokingEventEntity? {
+    override suspend fun getLastEvent(): SmokingEventEntity {
         return smokingEventDao.getLastEvent()
     }
 
