@@ -6,7 +6,10 @@ import com.devhjs.mysmokinglog.data.mapper.toModel
 import com.devhjs.mysmokinglog.domain.model.UserSetting
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 
+
+@Singleton
 class UserSettingRepositoryImpl @Inject constructor(
     private val userSettingsDao: UserSettingsDao
 ) : UserSettingRepository {

@@ -6,7 +6,9 @@ import com.devhjs.mysmokinglog.data.mapper.toModel
 import com.devhjs.mysmokinglog.domain.model.Smoking
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class SmokingRepositoryImpl @Inject constructor(
     private val smokingDao: SmokingDao
 ) : SmokingRepository {
