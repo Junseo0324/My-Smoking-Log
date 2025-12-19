@@ -2,15 +2,15 @@ package com.devhjs.mysmokinglog.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.devhjs.mysmokinglog.data.dao.SmokingEventDao
+import com.devhjs.mysmokinglog.data.dao.SmokingDao
 import com.devhjs.mysmokinglog.data.dao.UserSettingsDao
-import com.devhjs.mysmokinglog.data.entity.SmokingEventEntity
-import com.devhjs.mysmokinglog.data.entity.UserSettingsEntity
+import com.devhjs.mysmokinglog.data.entity.SmokingEntity
+import com.devhjs.mysmokinglog.data.entity.UserSettingEntity
 
 @Database(
     entities = [
-        SmokingEventEntity::class,
-        UserSettingsEntity::class
+        SmokingEntity::class,
+        UserSettingEntity::class
     ],
     version = 1,
     exportSchema = true
@@ -18,7 +18,7 @@ import com.devhjs.mysmokinglog.data.entity.UserSettingsEntity
 
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun smokingEventDao(): SmokingEventDao
+    abstract fun smokingDao(): SmokingDao
 
     abstract fun userSettingsDao(): UserSettingsDao
 }

@@ -1,7 +1,9 @@
 package com.devhjs.mysmokinglog.domain.repository
 
-interface UserSettingRepository {
-    suspend fun getSettings()
+import com.devhjs.mysmokinglog.domain.model.UserSetting
 
-    suspend fun saveSettings()
+interface UserSettingRepository {
+    suspend fun getSettings(): UserSetting
+
+    suspend fun saveSettings(settings: UserSetting)
 }

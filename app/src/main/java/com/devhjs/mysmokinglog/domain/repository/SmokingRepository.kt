@@ -1,15 +1,15 @@
 package com.devhjs.mysmokinglog.domain.repository
 
-import com.devhjs.mysmokinglog.domain.model.SmokingEvent
+import com.devhjs.mysmokinglog.domain.model.Smoking
 
 interface SmokingRepository {
-    suspend fun insert(event: SmokingEvent)
+    suspend fun insert(event: Smoking)
 
-    suspend fun delete(event: SmokingEvent)
+    suspend fun delete(event: Smoking)
 
-    suspend fun getSmokingEventsByDate(date: String): List<SmokingEvent>
+    suspend fun getSmokingEventsByDate(date: String): List<Smoking>
 
-    suspend fun getLastSmokingEvent(): SmokingEvent?
+    suspend fun getLastSmokingEvent(): Smoking?
 
-    suspend fun getSmokingEventsBetween(startDate: String, endDate: String): List<SmokingEvent>
+    suspend fun getSmokingEventsBetween(startDate: String, endDate: String): List<Smoking>
 }

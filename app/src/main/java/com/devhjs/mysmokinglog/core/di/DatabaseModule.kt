@@ -3,7 +3,7 @@ package com.devhjs.mysmokinglog.core.di
 import android.content.Context
 import androidx.room.Room
 import com.devhjs.mysmokinglog.data.AppDatabase
-import com.devhjs.mysmokinglog.data.dao.SmokingEventDao
+import com.devhjs.mysmokinglog.data.dao.SmokingDao
 import com.devhjs.mysmokinglog.data.dao.UserSettingsDao
 import dagger.Module
 import dagger.Provides
@@ -31,7 +31,7 @@ object DatabaseModule {
     }
 
     @Provides
-    fun provideSmokingEventDao(db: AppDatabase): SmokingEventDao {
+    fun provideSmokingEventDao(db: AppDatabase): SmokingDao {
         return db.smokingEventDao()
     }
 

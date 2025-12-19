@@ -4,18 +4,18 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.devhjs.mysmokinglog.data.entity.SmokingEventEntity
+import com.devhjs.mysmokinglog.data.entity.SmokingEntity
 
 @Dao
-interface SmokingEventDao {
+interface SmokingDao {
 
     // 기록
     @Insert
-    suspend fun insert(event: SmokingEventEntity)
+    suspend fun insert(event: SmokingEntity)
 
     // 되돌리기
     @Delete
-    suspend fun delete(event: SmokingEventEntity)
+    suspend fun delete(event: SmokingEntity)
 
     // 오늘 개수
     @Query("""
@@ -32,7 +32,7 @@ interface SmokingEventDao {
         WHERE date = :date 
         ORDER BY timestamp DESC
     """)
-    suspend fun getEventsByDate(date: String): List<SmokingEventEntity>
+    suspend fun getEventsByDate(date: String): List<SmokingEntity>
 
     // 마지막 흡연
     @Query("""
@@ -41,7 +41,7 @@ interface SmokingEventDao {
         ORDER BY timestamp DESC 
         LIMIT 1
     """)
-    suspend fun getLastEvent(): SmokingEventEntity
+    suspend fun getLastEvent(): SmokingEntity
 
     // 기간별 이벤트 (주간/월간 통계)
     @Query("""
@@ -53,5 +53,5 @@ interface SmokingEventDao {
     suspend fun getEventsBetween(
         startDate: String,
         endDate: String
-    ): List<SmokingEventEntity>
+    ): List<SmokingEntity>
 }

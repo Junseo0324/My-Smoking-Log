@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey
         Index(value = ["date"])
     ]
 )
-data class SmokingEventEntity(
+data class SmokingEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
 
