@@ -32,7 +32,7 @@ object DatabaseModule {
 
     @Provides
     fun provideSmokingEventDao(db: AppDatabase): SmokingDao {
-        return db.smokingEventDao()
+        return db.smokingDao()
     }
 
     @Provides

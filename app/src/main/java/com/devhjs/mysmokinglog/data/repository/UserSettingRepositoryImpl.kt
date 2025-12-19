@@ -5,10 +5,11 @@ import com.devhjs.mysmokinglog.data.mapper.toEntity
 import com.devhjs.mysmokinglog.data.mapper.toModel
 import com.devhjs.mysmokinglog.domain.model.UserSetting
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
+import javax.inject.Inject
 
-class UserSettingRepositoryImpl(
+class UserSettingRepositoryImpl @Inject constructor(
     private val userSettingsDao: UserSettingsDao
-): UserSettingRepository {
+) : UserSettingRepository {
     override suspend fun getSettings(): UserSetting {
         return userSettingsDao.getSettings().toModel()
     }
