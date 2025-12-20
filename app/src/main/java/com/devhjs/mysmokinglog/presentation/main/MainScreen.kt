@@ -5,6 +5,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.devhjs.mysmokinglog.presentation.component.BottomNavigationBar
+import com.devhjs.mysmokinglog.ui.AppColors
 
 @Composable
 fun MainScreen(
@@ -14,6 +15,7 @@ fun MainScreen(
 ) {
 
     Scaffold(
+        containerColor = AppColors.Background,
         bottomBar = {
             BottomNavigationBar(
                 selectedRoute = selectedRoute,
