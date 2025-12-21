@@ -1,15 +1,16 @@
 package com.devhjs.mysmokinglog.domain.repository
 
 import com.devhjs.mysmokinglog.domain.model.Smoking
+import kotlinx.coroutines.flow.Flow
 
 interface SmokingRepository {
     suspend fun insert(event: Smoking)
 
-    suspend fun delete(event: Smoking)
+    suspend fun delete()
 
-    suspend fun getSmokingEventsByDate(date: String): List<Smoking>
+    fun getSmokingEventsByDate(date: String): Flow<List<Smoking>>
 
-    suspend fun getLastSmokingEvent(): Smoking
+    fun getLastSmokingEvent(): Flow<Smoking?>
 
     suspend fun getSmokingEventsBetween(startDate: String, endDate: String): List<Smoking>
 }

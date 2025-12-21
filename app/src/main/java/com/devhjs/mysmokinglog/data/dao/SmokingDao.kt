@@ -1,10 +1,10 @@
 package com.devhjs.mysmokinglog.data.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.devhjs.mysmokinglog.data.entity.SmokingEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SmokingDao {
@@ -13,9 +13,17 @@ interface SmokingDao {
     @Insert
     suspend fun insert(event: SmokingEntity)
 
-    // 되돌리기
-    @Delete
-    suspend fun delete(event: SmokingEntity)
+    @Query("""
+    DELETE FROM smoking_event
+    WHERE timestamp = (
+        SELECT timestamp
+        FROM smoking_event
+        ORDER BY timestamp DESC
+        LIMIT 1
+    )
+""")
+    suspend fun deleteLastEvent()
+
 
     // 오늘 개수
     @Query("""
@@ -32,7 +40,7 @@ interface SmokingDao {
         WHERE date = :date 
         ORDER BY timestamp DESC
     """)
-    suspend fun getEventsByDate(date: String): List<SmokingEntity>
+    fun getEventsByDate(date: String): Flow<List<SmokingEntity>>
 
     // 마지막 흡연
     @Query("""
@@ -41,7 +49,7 @@ interface SmokingDao {
         ORDER BY timestamp DESC 
         LIMIT 1
     """)
-    suspend fun getLastEvent(): SmokingEntity
+    fun getLastEvent(): Flow<SmokingEntity?>
 
     // 기간별 이벤트 (주간/월간 통계)
     @Query("""

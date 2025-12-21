@@ -5,6 +5,8 @@ import com.devhjs.mysmokinglog.data.mapper.toEntity
 import com.devhjs.mysmokinglog.data.mapper.toModel
 import com.devhjs.mysmokinglog.domain.model.Smoking
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,16 +19,18 @@ class SmokingRepositoryImpl @Inject constructor(
         smokingDao.insert(event.toEntity())
     }
 
-    override suspend fun delete(event: Smoking) {
-        smokingDao.delete(event.toEntity())
+    override suspend fun delete() {
+        smokingDao.deleteLastEvent()
     }
 
-    override suspend fun getSmokingEventsByDate(date: String): List<Smoking> {
-        return smokingDao.getEventsByDate(date).map { it.toModel() }
+    override fun getSmokingEventsByDate(date: String): Flow<List<Smoking>> {
+        return smokingDao.getEventsByDate(date).map { entities ->
+            entities.map { it.toModel() }
+        }
     }
 
-    override suspend fun getLastSmokingEvent(): Smoking {
-        return smokingDao.getLastEvent().toModel()
+    override fun getLastSmokingEvent(): Flow<Smoking?> {
+        return smokingDao.getLastEvent().map { it?.toModel() }
     }
 
     override suspend fun getSmokingEventsBetween(startDate: String, endDate: String): List<Smoking> {
