@@ -6,7 +6,11 @@ import com.devhjs.mysmokinglog.domain.model.UserSetting
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
 import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -50,12 +54,13 @@ class GetTodaySmokingInfoUseCaseTest {
         val userSettings = UserSetting(dailyLimit = 15, packPrice = 4500, cigarettesPerPackage = 20)
         val lastSmoking = Smoking(timestamp = fixedMillis + 1000, date = todayStr)
 
-        coEvery { smokingRepository.getSmokingEventsByDate(todayStr) } returns smokingEvents
+        every { smokingRepository.getSmokingEventsByDate(todayStr) } returns flowOf(smokingEvents)
         coEvery { userSettingRepository.getSettings() } returns userSettings
-        coEvery { smokingRepository.getLastSmokingEvent() } returns lastSmoking
+        every { smokingRepository.getLastSmokingEvent() } returns flowOf(lastSmoking)
 
         // When (실행)
-        val result = getTodaySmokingInfoUseCase.execute()
+        // Flow를 반환하므로 first()로 첫 번째 방출값을 가져옴
+        val result = getTodaySmokingInfoUseCase().first()
 
         // Then (검증)
         assert(result is Result.Success)
@@ -72,13 +77,14 @@ class GetTodaySmokingInfoUseCaseTest {
         getTodaySmokingInfoUseCase = GetTodaySmokingInfoUseCase(smokingRepository, userSettingRepository, fixedClock)
         
         val exception = RuntimeException("DB Error")
-        coEvery { smokingRepository.getSmokingEventsByDate(any()) } throws exception
+        every { smokingRepository.getSmokingEventsByDate(any()) } returns flow { throw exception }
+        every { smokingRepository.getLastSmokingEvent() } returns flowOf(null)
 
         // When (실행)
-        val result = getTodaySmokingInfoUseCase.execute()
-
+        val result = getTodaySmokingInfoUseCase().first()
+        
         // Then (검증)
         assert(result is Result.Error)
-        assertEquals(exception, (result as Result.Error).error)
+        assertEquals(exception.message, (result as Result.Error).error.message)
     }
 }
