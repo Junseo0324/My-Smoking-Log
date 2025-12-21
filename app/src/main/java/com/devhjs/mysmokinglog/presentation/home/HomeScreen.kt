@@ -1,7 +1,9 @@
 package com.devhjs.mysmokinglog.presentation.home
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devhjs.mysmokinglog.R
+import com.devhjs.mysmokinglog.presentation.component.HomeButton
 import com.devhjs.mysmokinglog.ui.AppColors
 import com.devhjs.mysmokinglog.ui.AppTextStyles
 
@@ -36,6 +39,12 @@ fun HomeScreen(
     state: HomeState,
     onAction: (HomeAction) -> Unit = {},
 ) {
+    val (statusColor, statusBackgroundColor) = when (state.status) {
+        SmokingStatus.SAFE -> AppColors.PrimaryColor to AppColors.PrimaryColor40
+        SmokingStatus.WARNING -> AppColors.ThirdColor to AppColors.ThirdColor40
+        SmokingStatus.EXCEEDED -> AppColors.SecondaryColor to AppColors.SecondaryColor40
+    }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -47,14 +56,14 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .size(150.dp)
-                .background(color = AppColors.PrimaryColor40, shape = RoundedCornerShape(12.dp))
+                .background(color = statusBackgroundColor, shape = RoundedCornerShape(12.dp))
                 .clip(RoundedCornerShape(12.dp)),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = "${state.todayCount}",
-                style = AppTextStyles.titleTextBold.copy(color = AppColors.PrimaryColor),
+                style = AppTextStyles.titleTextBold.copy(color = statusColor),
             )
             Text(
                 text = "개비",
@@ -77,7 +86,7 @@ fun HomeScreen(
                     modifier = Modifier
                         .size(10.dp)
                         .clip(CircleShape)
-                        .background(AppColors.PrimaryColor)
+                        .background(statusColor)
                 )
                 Spacer(modifier = Modifier.width(5.dp))
             }
@@ -132,22 +141,27 @@ fun HomeScreen(
         }
         Spacer(modifier = Modifier.height(30.dp))
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(color = AppColors.White, shape = RoundedCornerShape(10.dp))
-                .clickable {
-                    onAction(HomeAction.AddSmoking)
-                }
-                .padding(vertical = 20.dp)
-                .clip(RoundedCornerShape(10.dp)),
-            contentAlignment = Alignment.Center
+        HomeButton(
+            title = "+ 한 개비",
+            backgroundColor = AppColors.White,
+            textColor = AppColors.Black
         ) {
-            Text(
-                text = "+ 한 개비",
-                style = AppTextStyles.largeTextBold.copy(fontSize = 18.sp),
-                fontSize = 20.sp
-            )
+            onAction(HomeAction.AddSmoking)
+        }
+        Spacer(modifier = Modifier.height(30.dp))
+
+        AnimatedVisibility(
+            visible = state.isUndoVisible,
+            enter = fadeIn(),
+            exit = fadeOut()
+        ) {
+            HomeButton(
+                title = "되돌리기",
+                backgroundColor = AppColors.Black30,
+                textColor = AppColors.White
+            ) {
+                onAction(HomeAction.DeleteSmoking)
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ fun HomeScreenRoot(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+
     HomeScreen(
         state = state,
         onAction = viewModel::onAction

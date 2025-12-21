@@ -90,12 +90,12 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun deleteSmokingHistory() {
+        _state.update { it.copy(isUndoVisible = false) }
+        undoJob?.cancel()
+        
         viewModelScope.launch {
             val result = deleteSmokingUseCase.execute()
-            if (result is Result.Success) {
-                _state.update { it.copy(isUndoVisible = false) }
-                undoJob?.cancel()
-            } else if (result is Result.Error) {
+            if (result is Result.Error) {
                 // 에러 처리
             }
         }
