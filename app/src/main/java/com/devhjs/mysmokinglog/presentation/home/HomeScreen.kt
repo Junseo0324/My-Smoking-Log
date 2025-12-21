@@ -22,14 +22,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.ui.AppColors
+import com.devhjs.mysmokinglog.ui.AppTextStyles
 
 @Composable
 fun HomeScreen(
@@ -48,29 +47,26 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .size(150.dp)
-                .background(color = Color(0x8034D399), shape = RoundedCornerShape(12.dp))
+                .background(color = AppColors.PrimaryColor40, shape = RoundedCornerShape(12.dp))
                 .clip(RoundedCornerShape(12.dp)),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // text style 정의 후 변경
             Text(
                 text = "${state.todayCount}",
-                fontSize = 50.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = AppColors.White,
+                style = AppTextStyles.titleTextBold.copy(color = AppColors.PrimaryColor),
             )
             Text(
                 text = "개비",
-                color = AppColors.White
+                style = AppTextStyles.normalTextRegular.copy(color = AppColors.White),
             )
         }
         Spacer(modifier = Modifier.height(15.dp))
         Text(
             text = "하루 상한선 : ${state.dailyLimit}개비",
-            color = AppColors.White
+            style = AppTextStyles.normalTextRegular.copy(color = AppColors.White),
         )
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(30.dp))
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
@@ -81,29 +77,30 @@ fun HomeScreen(
                     modifier = Modifier
                         .size(10.dp)
                         .clip(CircleShape)
-                        .background(Color(0xFF34D399))
+                        .background(AppColors.PrimaryColor)
                 )
                 Spacer(modifier = Modifier.width(5.dp))
             }
         }
 
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(30.dp))
 
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = AppColors.CardColor, shape = RoundedCornerShape(10.dp))
+                .background(color = AppColors.Black08, shape = RoundedCornerShape(10.dp))
                 .padding(horizontal = 10.dp, vertical = 10.dp),
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
             ) {
 
                 Box(
                     modifier = Modifier
                         .size(50.dp)
                         .background(
-                            color = AppColors.Background,
+                            color = AppColors.Black10,
                             shape = RoundedCornerShape(12.dp)
                         ),
                     contentAlignment = Alignment.Center
@@ -117,21 +114,23 @@ fun HomeScreen(
                 }
                 Spacer(modifier = Modifier.width(10.dp))
                 Column(
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.Center
                 ) {
                     Text(
                         text = "마지막으로 핀 지",
-                        color = AppColors.White
+                        style = AppTextStyles.normalTextRegular.copy(color = AppColors.White),
                     )
+                    Spacer(modifier = Modifier.height(5.dp))
                     Text(
-                        text = "${state.lastSmokingTime}",
-                        color = AppColors.White
+                        text = state.lastSmokingTime,
+                        style = AppTextStyles.largeTextBold.copy(fontSize = 18.sp, color = AppColors.White),
                     )
                 }
             }
 
         }
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(30.dp))
 
         Box(
             modifier = Modifier
@@ -146,6 +145,7 @@ fun HomeScreen(
         ) {
             Text(
                 text = "+ 한 개비",
+                style = AppTextStyles.largeTextBold.copy(fontSize = 18.sp),
                 fontSize = 20.sp
             )
         }

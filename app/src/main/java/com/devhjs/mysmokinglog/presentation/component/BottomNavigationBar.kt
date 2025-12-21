@@ -36,7 +36,7 @@ fun BottomNavigationBar(
     )
 
     NavigationBar(
-        containerColor = AppColors.CardColor
+        containerColor = AppColors.Black08
     ) {
         bottomNavItems.forEach { item ->
             NavigationBarItem(
