@@ -9,7 +9,7 @@ interface SmokingRepository {
 
     suspend fun getSmokingEventsByDate(date: String): List<Smoking>
 
-    suspend fun getLastSmokingEvent(): Smoking?
+    suspend fun getLastSmokingEvent(): Smoking
 
     suspend fun getSmokingEventsBetween(startDate: String, endDate: String): List<Smoking>
 }

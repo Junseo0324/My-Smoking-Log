@@ -14,7 +14,15 @@ class UserSettingRepositoryImpl @Inject constructor(
     private val userSettingsDao: UserSettingsDao
 ) : UserSettingRepository {
     override suspend fun getSettings(): UserSetting {
-        return userSettingsDao.getSettings().toModel()
+        val setting = userSettingsDao.getSettings()
+
+        return if (setting == null) {
+            val default = UserSetting.default()
+            userSettingsDao.saveSettings(default.toEntity())
+            default
+        } else {
+            setting.toModel()
+        }
     }
 
     override suspend fun saveSettings(settings: UserSetting) {

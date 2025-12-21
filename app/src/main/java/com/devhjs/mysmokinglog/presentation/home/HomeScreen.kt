@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -31,7 +32,11 @@ import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.ui.AppColors
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    state: HomeState,
+    onAction: (HomeAction) -> Unit = {},
+) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -50,7 +55,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         ) {
             // text style 정의 후 변경
             Text(
-                text = "23",
+                text = "${state.todayCount}",
                 fontSize = 50.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = AppColors.White,
@@ -60,10 +65,29 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 color = AppColors.White
             )
         }
-        Spacer(modifier = Modifier.height(10.dp))
-        FlowRow() { }
+        Spacer(modifier = Modifier.height(15.dp))
+        Text(
+            text = "하루 상한선 : ${state.dailyLimit}개비",
+            color = AppColors.White
+        )
+        Spacer(modifier = Modifier.height(15.dp))
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.spacedBy(15.dp)
+        ) {
+            repeat(40) {
+                Box(
+                    modifier = Modifier
+                        .size(10.dp)
+                        .clip(CircleShape)
+                        .background(Color(0xFF34D399))
+                )
+                Spacer(modifier = Modifier.width(5.dp))
+            }
+        }
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
         Box(
             modifier = Modifier
@@ -100,7 +124,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                         color = AppColors.White
                     )
                     Text(
-                        text = "2시간 전",
+                        text = "${state.lastSmokingTime}",
                         color = AppColors.White
                     )
                 }
@@ -114,7 +138,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .background(color = AppColors.White, shape = RoundedCornerShape(10.dp))
                 .clickable {
-                    //
+                    onAction(HomeAction.AddSmoking)
                 }
                 .padding(vertical = 20.dp)
                 .clip(RoundedCornerShape(10.dp)),
@@ -131,5 +155,11 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(
+        state = HomeState(
+            todayCount = 10,
+            dailyLimit = 20,
+            lastSmokingTime = "1시간 전"
+        )
+    )
 }
