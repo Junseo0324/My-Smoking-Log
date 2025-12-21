@@ -76,7 +76,7 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.Center,
             verticalArrangement = Arrangement.spacedBy(15.dp)
         ) {
-            repeat(40) {
+            repeat(state.todayCount) {
                 Box(
                     modifier = Modifier
                         .size(10.dp)

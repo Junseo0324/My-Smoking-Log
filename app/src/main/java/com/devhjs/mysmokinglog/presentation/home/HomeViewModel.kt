@@ -38,7 +38,7 @@ class HomeViewModel @Inject constructor(
                     isLoading = false,
                     todayCount = smokingSummary.count,
                     dailyLimit = smokingSummary.dailyLimit,
-                    lastSmokingTime = smokingSummary.lastSmokingTime.toString()
+                    lastSmokingTime = smokingSummary.lastSmokingTime
                 )
             }
 
@@ -56,6 +56,7 @@ class HomeViewModel @Inject constructor(
     private fun addSmoking() {
         viewModelScope.launch {
             addSmokingUseCase.execute()
+            fetchData()
         }
     }
 
