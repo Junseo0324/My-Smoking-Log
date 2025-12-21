@@ -2,6 +2,8 @@ package com.devhjs.mysmokinglog.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devhjs.mysmokinglog.core.util.Result
+
 import com.devhjs.mysmokinglog.domain.usecase.AddSmokingUseCase
 import com.devhjs.mysmokinglog.domain.usecase.GetTodaySmokingInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,15 +33,24 @@ class HomeViewModel @Inject constructor(
                     isLoading = true
                 )
             }
-            val smokingSummary = getTodaySmokingInfoUseCase.execute()
-
-            _state.update {
-                it.copy(
-                    isLoading = false,
-                    todayCount = smokingSummary.count,
-                    dailyLimit = smokingSummary.dailyLimit,
-                    lastSmokingTime = smokingSummary.lastSmokingTime
-                )
+            
+            when(val result = getTodaySmokingInfoUseCase.execute()) {
+                is Result.Success -> {
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            todayCount = result.data.count,
+                            dailyLimit = result.data.dailyLimit,
+                            lastSmokingTime = result.data.lastSmokingTime
+                        )
+                    }
+                }
+                is Result.Error -> {
+                    _state.update {
+                        it.copy(isLoading = false)
+                    }
+                    // 에러 처리 로직 추가
+                }
             }
 
         }
@@ -55,8 +66,14 @@ class HomeViewModel @Inject constructor(
 
     private fun addSmoking() {
         viewModelScope.launch {
-            addSmokingUseCase.execute()
-            fetchData()
+            when(val result = addSmokingUseCase.execute()) {
+                is Result.Success -> {
+                    fetchData()
+                }
+                is Result.Error -> {
+                    // 에러 처리 로직 추가
+                }
+            }
         }
     }
 

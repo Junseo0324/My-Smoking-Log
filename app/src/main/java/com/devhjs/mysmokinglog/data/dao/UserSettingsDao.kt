@@ -11,7 +11,7 @@ interface UserSettingsDao {
 
     // 설정 조회
     @Query("SELECT * FROM user_settings LIMIT 1")
-    suspend fun getSettings(): UserSettingEntity
+    suspend fun getSettings(): UserSettingEntity?
 
     // 설정 저장
     @Insert(onConflict = OnConflictStrategy.REPLACE)

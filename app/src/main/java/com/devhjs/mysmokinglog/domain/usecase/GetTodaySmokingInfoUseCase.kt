@@ -1,6 +1,6 @@
 package com.devhjs.mysmokinglog.domain.usecase
 
-import android.util.Log
+import com.devhjs.mysmokinglog.core.util.Result
 import com.devhjs.mysmokinglog.core.util.formatTimeAgo
 import com.devhjs.mysmokinglog.domain.model.TodaySmoking
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
@@ -14,25 +14,23 @@ class GetTodaySmokingInfoUseCase @Inject constructor(
     private val userSettingRepository: UserSettingRepository,
     private val clock: Clock
 ) {
-    suspend fun execute(): TodaySmoking {
+    suspend fun execute(): Result<TodaySmoking, Throwable> {
         return try {
             val today = LocalDate.now(clock).toString()
             val todayCount = smokingRepository.getSmokingEventsByDate(today).size
             val dailyLimit = userSettingRepository.getSettings().dailyLimit
             val lastSmoking = smokingRepository.getLastSmokingEvent().timestamp
 
-            TodaySmoking(
-                count = todayCount,
-                dailyLimit = dailyLimit,
-                lastSmokingTime = formatTimeAgo(lastSmoking,clock)
+            Result.Success(
+                TodaySmoking(
+                    count = todayCount,
+                    dailyLimit = dailyLimit,
+                    lastSmokingTime = formatTimeAgo(lastSmoking, clock)
+                )
             )
         } catch (e: Exception) {
-            Log.d("TAG", "execute: ${e.message}")
-            TodaySmoking(
-                count = 0,
-                dailyLimit = 0,
-                lastSmokingTime = "알 수 없음"
-            )
+
+            Result.Error(e)
         }
     }
 }
