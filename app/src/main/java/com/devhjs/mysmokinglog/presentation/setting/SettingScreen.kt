@@ -35,8 +35,8 @@ import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.presentation.component.CustomSlider
 import com.devhjs.mysmokinglog.presentation.component.InfoItem
 import com.devhjs.mysmokinglog.presentation.component.PricePresetButton
-import com.devhjs.mysmokinglog.presentation.component.SettingsCard
 import com.devhjs.mysmokinglog.presentation.component.SettingsCardHeader
+import com.devhjs.mysmokinglog.presentation.component.SmokingLogCard
 import com.devhjs.mysmokinglog.ui.AppColors
 import com.devhjs.mysmokinglog.ui.AppTextStyles
 
@@ -67,7 +67,7 @@ fun SettingScreen(
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        SettingsCard {
+        SmokingLogCard {
             Column {
                 SettingsCardHeader(
                     painter = painterResource(R.drawable.check),
@@ -123,7 +123,7 @@ fun SettingScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        SettingsCard {
+        SmokingLogCard {
             Column {
                 SettingsCardHeader(
                     painter = painterResource(R.drawable.money),
@@ -205,7 +205,7 @@ fun SettingScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        SettingsCard {
+        SmokingLogCard {
             Column {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(

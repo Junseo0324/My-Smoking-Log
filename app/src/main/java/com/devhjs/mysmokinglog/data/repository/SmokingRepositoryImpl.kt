@@ -33,7 +33,11 @@ class SmokingRepositoryImpl @Inject constructor(
         return smokingDao.getLastEvent().map { it?.toModel() }
     }
 
-    override suspend fun getSmokingEventsBetween(startDate: String, endDate: String): List<Smoking> {
-        return smokingDao.getEventsBetween(startDate, endDate).map { it.toModel() }
+
+
+    override fun getSmokingEventsBetweenFlow(startDate: String, endDate: String): Flow<List<Smoking>> {
+        return smokingDao.getEventsBetweenFlow(startDate, endDate).map { entities ->
+            entities.map { it.toModel() }
+        }
     }
 }

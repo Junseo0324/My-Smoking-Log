@@ -5,6 +5,8 @@ import com.devhjs.mysmokinglog.data.mapper.toEntity
 import com.devhjs.mysmokinglog.data.mapper.toModel
 import com.devhjs.mysmokinglog.domain.model.UserSetting
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -27,6 +29,12 @@ class UserSettingRepositoryImpl @Inject constructor(
 
     override suspend fun saveSettings(settings: UserSetting) {
         userSettingsDao.saveSettings(settings.toEntity())
+    }
+
+    override fun getSettingsFlow(): Flow<UserSetting> {
+        return userSettingsDao.getSettingsFlow().map { entity ->
+            entity?.toModel() ?: UserSetting.default()
+        }
     }
 
 }

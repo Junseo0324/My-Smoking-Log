@@ -12,9 +12,12 @@ import androidx.compose.ui.unit.dp
 import com.devhjs.mysmokinglog.ui.AppColors
 
 @Composable
-fun SettingsCard(content: @Composable () -> Unit) {
+fun SmokingLogCard(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .background(AppColors.Black10, RoundedCornerShape(16.dp))
             .border(1.dp, AppColors.Black15, RoundedCornerShape(16.dp))

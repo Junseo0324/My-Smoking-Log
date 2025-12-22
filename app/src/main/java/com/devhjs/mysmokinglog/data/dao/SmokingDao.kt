@@ -25,14 +25,6 @@ interface SmokingDao {
     suspend fun deleteLastEvent()
 
 
-    // 오늘 개수
-    @Query("""
-        SELECT COUNT(*) 
-        FROM smoking_event 
-        WHERE date = :date
-    """)
-    suspend fun getCountByDate(date: String): Int
-
     // 오늘 흡연 이벤트 목록
     @Query("""
         SELECT * 
@@ -51,15 +43,7 @@ interface SmokingDao {
     """)
     fun getLastEvent(): Flow<SmokingEntity?>
 
-    // 기간별 이벤트 (주간/월간 통계)
-    @Query("""
-        SELECT * 
-        FROM smoking_event
-        WHERE date BETWEEN :startDate AND :endDate
-        ORDER BY timestamp ASC
-    """)
-    suspend fun getEventsBetween(
-        startDate: String,
-        endDate: String
-    ): List<SmokingEntity>
+    @Query("SELECT * FROM smoking_event WHERE date BETWEEN :startDate AND :endDate")
+    fun getEventsBetweenFlow(startDate: String, endDate: String): Flow<List<SmokingEntity>>
 }
+
