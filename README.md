@@ -33,7 +33,6 @@
 - **Dependency Injection**: [Hilt](https://dagger.dev/hilt/)
 - **Asynchronous**: Coroutines & [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/)
 - **Local Database**: [Room](https://developer.android.com/training/data-storage/room)
-- **Date & Time**: Java 8 Time API (`java.time.*`)
 
 ---
 
