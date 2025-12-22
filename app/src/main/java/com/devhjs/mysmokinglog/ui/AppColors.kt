@@ -23,6 +23,7 @@ object AppColors {
     val ThirdColor = Color(0xFFFBC024)
     val ThirdColor40 = Color(0x40FBC024)
 
+    val Notification = Color(0xFFFFF176)
 
 
 }
