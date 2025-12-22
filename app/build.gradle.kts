@@ -80,6 +80,5 @@ dependencies {
     // Serialization
     implementation(libs.kotlinx.serialization.json)
 
-    // MPAndroidChart
-    implementation(libs.mpandroidchart)
+
 }
