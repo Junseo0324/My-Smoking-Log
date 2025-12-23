@@ -1,5 +1,7 @@
 package com.devhjs.mysmokinglog.presentation.home
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devhjs.mysmokinglog.core.util.Result
@@ -16,6 +18,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getTodaySmokingInfoUseCase: GetTodaySmokingInfoUseCase,
@@ -34,7 +37,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
             
-            getTodaySmokingInfoUseCase().collect { result ->
+            getTodaySmokingInfoUseCase.execute().collect { result ->
                 when(result) {
                     is Result.Success -> {
                         _state.update {

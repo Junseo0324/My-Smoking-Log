@@ -8,7 +8,7 @@ import javax.inject.Inject
 class SaveSettingsUseCase @Inject constructor(
     private val repository: UserSettingRepository
 ) {
-    suspend operator fun invoke(settings: UserSetting): Result<Unit, Throwable> {
+    suspend fun execute(settings: UserSetting): Result<Unit, Throwable> {
         return try {
             repository.saveSettings(settings)
             Result.Success(Unit)

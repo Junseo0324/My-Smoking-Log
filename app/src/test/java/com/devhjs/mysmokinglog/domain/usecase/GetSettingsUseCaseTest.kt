@@ -27,7 +27,7 @@ class GetSettingsUseCaseTest {
         coEvery { repository.getSettings() } returns expectedSettings
 
         // When (실행)
-        val result = getSettingsUseCase()
+        val result = getSettingsUseCase.execute()
 
         // Then (검증)
         assert(result is Result.Success)
@@ -41,7 +41,7 @@ class GetSettingsUseCaseTest {
         coEvery { repository.getSettings() } throws exception
 
         // When (실행)
-        val result = getSettingsUseCase()
+        val result = getSettingsUseCase.execute()
 
         // Then (검증)
         assert(result is Result.Error)

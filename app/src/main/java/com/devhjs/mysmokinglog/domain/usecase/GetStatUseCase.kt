@@ -1,5 +1,7 @@
 package com.devhjs.mysmokinglog.domain.usecase
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
 import com.devhjs.mysmokinglog.presentation.stat.StatState
@@ -14,11 +16,12 @@ import java.time.temporal.ChronoUnit
 import java.time.temporal.TemporalAdjusters
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 class GetStatUseCase @Inject constructor(
     private val smokingRepository: SmokingRepository,
     private val userSettingRepository: UserSettingRepository
 ) {
-    operator fun invoke(): Flow<StatState> {
+    suspend fun execute(): Flow<StatState> {
         val today = LocalDate.now()
         
         // 1. 가져올 데이터의 날짜 범위 설정 (과거 1년 ~ 내일)

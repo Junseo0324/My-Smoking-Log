@@ -4,7 +4,6 @@ import com.devhjs.mysmokinglog.domain.model.Smoking
 import com.devhjs.mysmokinglog.domain.model.UserSetting
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
-import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
@@ -44,7 +43,7 @@ class GetStatUseCaseTest {
         every { userSettingRepository.getSettingsFlow() } returns flowOf(UserSetting(dailyLimit = 10, packPrice = 4500, cigarettesPerPackage = 20))
 
         // When
-        val stats = getStatUseCase().first()
+        val stats = getStatUseCase.execute().first()
 
         // Then
         assertEquals(3, stats.cigarettesTotalCount)
@@ -66,7 +65,7 @@ class GetStatUseCaseTest {
         every { userSettingRepository.getSettingsFlow() } returns flowOf(UserSetting(dailyLimit = 10, packPrice = 4500, cigarettesPerPackage = 20))
 
         // When
-        val stats = getStatUseCase().first()
+        val stats = getStatUseCase.execute().first()
 
         // Then
         assertEquals(0, stats.cigarettesTotalCount)

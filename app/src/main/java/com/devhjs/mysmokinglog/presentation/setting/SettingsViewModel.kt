@@ -29,7 +29,7 @@ class SettingsViewModel @Inject constructor(
     private fun fetchSettings() {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
-            val result = getSettingsUseCase()
+            val result = getSettingsUseCase.execute()
             _state.update {
                 when (result) {
                     is Result.Success -> {
@@ -66,7 +66,7 @@ class SettingsViewModel @Inject constructor(
     private fun saveSettings() {
         viewModelScope.launch {
             val currentState = state.value
-            saveSettingsUseCase(
+            saveSettingsUseCase.execute(
                 UserSetting(
                     dailyLimit = currentState.dailyLimit,
                     packPrice = currentState.packPrice,

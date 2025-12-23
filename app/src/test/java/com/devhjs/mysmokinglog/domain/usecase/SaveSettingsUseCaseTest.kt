@@ -28,7 +28,7 @@ class SaveSettingsUseCaseTest {
         coEvery { repository.saveSettings(newSettings) } returns Unit
 
         // When (실행)
-        val result = saveSettingsUseCase(newSettings)
+        val result = saveSettingsUseCase.execute(newSettings)
 
         // Then (검증)
         assert(result is Result.Success)
@@ -43,7 +43,7 @@ class SaveSettingsUseCaseTest {
         coEvery { repository.saveSettings(any()) } throws exception
 
         // When (실행)
-        val result = saveSettingsUseCase(newSettings)
+        val result = saveSettingsUseCase.execute(newSettings)
 
         // Then (검증)
         assert(result is Result.Error)

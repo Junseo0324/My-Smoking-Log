@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetSettingsUseCase @Inject constructor(
     private val repository: UserSettingRepository
 ) {
-    suspend operator fun invoke(): Result<UserSetting, Throwable> {
+    suspend  fun execute(): Result<UserSetting, Throwable> {
         return try {
             val settings = repository.getSettings()
             Result.Success(settings)

@@ -1,5 +1,7 @@
 package com.devhjs.mysmokinglog.presentation.stat
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devhjs.mysmokinglog.domain.usecase.GetStatUseCase
@@ -10,6 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class StatViewModel @Inject constructor(
     private val getStatUseCase: GetStatUseCase
@@ -22,9 +25,10 @@ class StatViewModel @Inject constructor(
         loadStats()
     }
 
+
     private fun loadStats() {
         viewModelScope.launch {
-            getStatUseCase()
+            getStatUseCase.execute()
                 .collect { stats ->
                     _state.value = stats
                 }

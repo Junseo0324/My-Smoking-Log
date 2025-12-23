@@ -77,7 +77,7 @@ class SettingsViewModelTest {
     fun `가격_변경_액션_테스트`() = runTest {
         // Given
         testDispatcher.scheduler.advanceUntilIdle()
-        coEvery { saveSettingsUseCase(any()) } returns Result.Success(Unit)
+        coEvery { saveSettingsUseCase.execute(any()) } returns Result.Success(Unit)
 
         // When
         viewModel.onAction(SettingsAction.ChangePackPrice(5000))
@@ -85,8 +85,8 @@ class SettingsViewModelTest {
 
         // Then
         assertEquals(5000, viewModel.state.value.packPrice)
-        coVerify { 
-            saveSettingsUseCase(
+        coVerify {
+            saveSettingsUseCase.execute(
                 match { it.packPrice == 5000 && it.dailyLimit == 20 }
             ) 
         }
@@ -96,7 +96,7 @@ class SettingsViewModelTest {
     fun `설정_저장_액션_테스트`() = runTest {
         // Given
         testDispatcher.scheduler.advanceUntilIdle()
-        coEvery { saveSettingsUseCase(any()) } returns Result.Success(Unit)
+        coEvery { saveSettingsUseCase.execute(any()) } returns Result.Success(Unit)
         
         viewModel.onAction(SettingsAction.ChangeDailyLimit(10))
 
@@ -105,8 +105,8 @@ class SettingsViewModelTest {
         testDispatcher.scheduler.advanceUntilIdle()
 
         // Then
-        coVerify { 
-            saveSettingsUseCase(
+        coVerify {
+            saveSettingsUseCase.execute(
                 match { it.dailyLimit == 10 }
             ) 
         }

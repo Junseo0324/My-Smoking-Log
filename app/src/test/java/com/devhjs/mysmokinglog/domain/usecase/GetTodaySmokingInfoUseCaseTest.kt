@@ -60,7 +60,7 @@ class GetTodaySmokingInfoUseCaseTest {
 
         // When (실행)
         // Flow를 반환하므로 first()로 첫 번째 방출값을 가져옴
-        val result = getTodaySmokingInfoUseCase().first()
+        val result = getTodaySmokingInfoUseCase.execute().first()
 
         // Then (검증)
         assert(result is Result.Success)
@@ -81,7 +81,7 @@ class GetTodaySmokingInfoUseCaseTest {
         every { smokingRepository.getLastSmokingEvent() } returns flowOf(null)
 
         // When (실행)
-        val result = getTodaySmokingInfoUseCase().first()
+        val result = getTodaySmokingInfoUseCase.execute().first()
         
         // Then (검증)
         assert(result is Result.Error)

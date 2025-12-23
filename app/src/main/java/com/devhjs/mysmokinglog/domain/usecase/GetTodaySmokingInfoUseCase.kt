@@ -1,5 +1,7 @@
 package com.devhjs.mysmokinglog.domain.usecase
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.devhjs.mysmokinglog.core.util.Result
 import com.devhjs.mysmokinglog.core.util.formatTimeAgo
 import com.devhjs.mysmokinglog.domain.model.TodaySmoking
@@ -12,12 +14,13 @@ import java.time.Clock
 import java.time.LocalDate
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 class GetTodaySmokingInfoUseCase @Inject constructor(
     private val smokingRepository: SmokingRepository,
     private val userSettingRepository: UserSettingRepository,
     private val clock: Clock
 ) {
-    operator fun invoke(): Flow<Result<TodaySmoking, Throwable>> {
+    suspend fun execute(): Flow<Result<TodaySmoking, Throwable>> {
         val today = LocalDate.now(clock).toString()
         
         return combine(
