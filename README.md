@@ -53,9 +53,6 @@
     -   `Room DB`: 로컬 데이터베이스 (`SmokingDao`, `UserSettingsDao`).
     -   `Mapper`: Entity와 Domain Model 간의 변환을 담당.
 
-### Reactive Data Flow
-애플리케이션은 **Reactive Programming** 모델을 채택했습니다. Room Database의 변경 사항은 `Flow`를 통해 전파되며, `UseCase`에서 `combine` 등의 연산자를 통해 데이터를 가공한 뒤 `ViewModel`을 거쳐 UI에 즉시 반영됩니다.
-
 ---
 
 ## 🧪 테스트 (Testing)
