@@ -36,7 +36,7 @@ class SettingsViewModelTest {
     fun `초기화`() {
         Dispatchers.setMain(testDispatcher)
         
-        coEvery { getSettingsUseCase() } returns Result.Success(initialSettings)
+        coEvery { getSettingsUseCase.execute() } returns Result.Success(initialSettings)
         
         viewModel = SettingsViewModel(getSettingsUseCase, saveSettingsUseCase)
     }
@@ -58,7 +58,7 @@ class SettingsViewModelTest {
         assertEquals(20, state.cigarettesPerPackage)
         assertEquals(false, state.isLoading)
         
-        coVerify { getSettingsUseCase() }
+        coVerify { getSettingsUseCase.execute() }
     }
 
     @Test

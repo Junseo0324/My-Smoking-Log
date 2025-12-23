@@ -40,7 +40,7 @@ class HomeViewModelTest {
 
         // 초기 데이터 로드 Mock
         // Flow를 반환하도록 설정. MutableStateFlow를 사용하여 값을 변경하며 테스트.
-        every { getTodaySmokingInfoUseCase() } returns _dataFlow
+        coEvery { getTodaySmokingInfoUseCase.execute() } returns _dataFlow
 
         viewModel = HomeViewModel(getTodaySmokingInfoUseCase, addSmokingUseCase, deleteSmokingUseCase)
     }
@@ -72,7 +72,7 @@ class HomeViewModelTest {
 
         // Then (검증)
         coVerify { addSmokingUseCase.execute() }
-        verify { getTodaySmokingInfoUseCase() } // Flow 수집 시작 확인
+        coVerify { getTodaySmokingInfoUseCase.execute() } // Flow 수집 시작 확인
 
         // 데이터 변경 시뮬레이션 (DB 업데이트 -> Flow 방출)
         val updatedData = TodaySmoking(
@@ -110,7 +110,7 @@ class HomeViewModelTest {
 
 
     @Test
-    fun `흡연_추가_시_되돌리기_버튼이_보이고_5초_후_사라지는지_테스트`() = runTest {
+    fun `흡연_추가_시_되돌리기_버튼이_보이고_3초_후_사라지는지_테스트`() = runTest {
         // Given
         coEvery { addSmokingUseCase.execute() } returns Result.Success(Unit)
 
@@ -121,8 +121,8 @@ class HomeViewModelTest {
         // Then - 추가 직후 보임
         assertEquals(true, viewModel.state.value.isUndoVisible)
 
-        // 5000ms (5초) 경과 후
-        testDispatcher.scheduler.advanceTimeBy(5001)
+        // 3000ms (3초) 경과 후
+        testDispatcher.scheduler.advanceTimeBy(3001)
         testDispatcher.scheduler.runCurrent()
         
         // Then - 사라짐
