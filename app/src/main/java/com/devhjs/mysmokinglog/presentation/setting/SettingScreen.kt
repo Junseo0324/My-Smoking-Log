@@ -236,7 +236,7 @@ fun SettingScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "My Smoking Log",
+                text = "Smoke Log",
                 style = AppTextStyles.normalTextRegular.copy(color = AppColors.Gray)
             )
             Spacer(modifier = Modifier.height(3.dp))
