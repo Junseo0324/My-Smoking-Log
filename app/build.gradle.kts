@@ -1,3 +1,7 @@
+
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -7,11 +11,13 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
+
 android {
     namespace = "com.devhjs.mysmokinglog"
     compileSdk {
         version = release(36)
     }
+
 
     defaultConfig {
         applicationId = "com.devhjs.mysmokinglog"
@@ -23,10 +29,25 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    val localProperties = Properties()
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localProperties.load(FileInputStream(localPropertiesFile))
+    }
+
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            manifestPlaceholders["adMobAppId"] = "ca-app-pub-3940256099942544~3347511713"
+            buildConfigField("String", "ADMOB_BANNER_ID", "\"ca-app-pub-3940256099942544/6300978111\"")
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"ca-app-pub-3940256099942544/1033173712\"") // Google Test Interstitial ID
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            manifestPlaceholders["adMobAppId"] = localProperties.getProperty("ADMOB_APP_ID") ?: ""
+            buildConfigField("String", "ADMOB_BANNER_ID", "\"${localProperties.getProperty("ADMOB_BANNER_ID")}\"")
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"${localProperties.getProperty("ADMOB_INTERSTITIAL_ID")}\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -42,6 +63,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -81,5 +103,7 @@ dependencies {
     // Serialization
     implementation(libs.kotlinx.serialization.json)
 
-
+    // AdMob
+    implementation(libs.play.services.ads)
+    
 }
