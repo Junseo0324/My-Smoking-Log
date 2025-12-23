@@ -61,7 +61,7 @@ fun SettingScreen(
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "목표와 가격을 설정하세요",
+            text = "흡연 습관을 인식하기 위한 기준을 설정하세요",
             style = AppTextStyles.normalTextRegular.copy(color = AppColors.Gray)
         )
 
@@ -71,8 +71,8 @@ fun SettingScreen(
             Column {
                 SettingsCardHeader(
                     painter = painterResource(R.drawable.check),
-                    title = "하루 상한선",
-                    subtitle = "하루 최대 흡연 개비 수",
+                    title = "하루 목표",
+                    subtitle = "줄이기 위한 기준 개비 수",
                     iconTint = AppColors.PrimaryColor
                 )
 
@@ -127,8 +127,8 @@ fun SettingScreen(
             Column {
                 SettingsCardHeader(
                     painter = painterResource(R.drawable.money),
-                    title = "한 갑 가격",
-                    subtitle = "담배 한 갑의 가격",
+                    title = "비용 기준",
+                    subtitle = "비용 계산을 위한 기준 가격",
                     iconTint = AppColors.ThirdColor
                 )
 
@@ -221,8 +221,8 @@ fun SettingScreen(
                     )
                 }
                 Spacer(modifier = Modifier.height(12.dp))
-                InfoItem("상한선은 경고를 위한 기준이며 강제되지 않습니다")
-                InfoItem("가격은 월간 비용 계산에 사용됩니다")
+                InfoItem("하루 목표는 참고용 기준입니다")
+                InfoItem("흡연은 건강에 해로울 수 있습니다")
                 InfoItem("설정은 자동으로 저장됩니다")
             }
         }

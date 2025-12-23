@@ -30,10 +30,14 @@ fun DailySmokingTimeChart(
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
-            text = "오늘의 흡연 시간대",
+            text = "흡연이 발생한 시간대 분포",
             style = AppTextStyles.titleTextBold.copy(fontSize = 18.sp, color = AppColors.White)
         )
-        
+        Spacer(modifier = Modifier.height(5.dp))
+        Text(
+            text = "* 흡연이 자주 발생하는 시간대를 확인하여 유혹을 피하거나 대비하는 데 도움을 줍니다.",
+            style = AppTextStyles.smallTextRegular.copy(color = AppColors.White)
+        )
         Spacer(modifier = Modifier.height(20.dp))
         
         Row(

@@ -59,10 +59,14 @@ fun WeeklyBarChart(
 
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
-            text = "주간 흡연량",
+            text = "주간 흡연 패턴",
             style = AppTextStyles.titleTextBold.copy(fontSize = 18.sp, color = AppColors.White)
         )
-        
+        Spacer(modifier = Modifier.height(5.dp))
+        Text(
+            text = "* 일주일 간 흡연 패턴을 시각화하여 변화를 인식하는데 도움을 줍니다.",
+            style = AppTextStyles.smallTextRegular.copy(color = AppColors.White)
+        )
         Spacer(modifier = Modifier.height(20.dp))
 
         Row(

@@ -52,7 +52,7 @@ fun StatScreen(
                 modifier = modifier.weight(1f)
             ) {
                 StatCardHeader(
-                    title = "기록 스트릭",
+                    title = "흡연 지속 일수",
                     state = "${state.streak}",
                     description = "일 연속"
                 )
@@ -71,7 +71,7 @@ fun StatScreen(
         Spacer(modifier = Modifier.height(20.dp))
         SmokingLogCard {
             StatCardHeader(
-                title = "이번 달 흡연 비용",
+                title = "줄일 수 있었던 지출",
                 state = "₩ ${state.thisMonthCost}",
                 description = "총 ${state.cigarettesTotalCount} 개비 (${state.packCount} 갑)"
             )
