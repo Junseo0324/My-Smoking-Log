@@ -13,6 +13,15 @@ fun StatScreenRoot(
     viewModel: StatViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val context = androidx.compose.ui.platform.LocalContext.current
+    
+    androidx.compose.runtime.LaunchedEffect(Unit) {
+        val activity = context as? android.app.Activity
+        activity?.let {
+            viewModel.showAd(it)
+        }
+    }
+    
     StatScreen(
         state = state,
         modifier = modifier
