@@ -1,5 +1,7 @@
 package com.devhjs.mysmokinglog.presentation.widget
 
+import android.appwidget.AppWidgetManager
+import android.content.Context
 import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.state.updateAppWidgetState
@@ -12,8 +14,8 @@ class SmokeLogWidgetReceiver : GlanceAppWidgetReceiver() {
     override val glanceAppWidget = SmokeLogWidget()
 
     override fun onUpdate(
-        context: android.content.Context,
-        appWidgetManager: android.appwidget.AppWidgetManager,
+        context: Context,
+        appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
