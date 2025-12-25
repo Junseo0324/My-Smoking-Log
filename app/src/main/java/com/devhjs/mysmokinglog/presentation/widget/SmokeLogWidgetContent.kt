@@ -23,7 +23,7 @@ import androidx.glance.unit.ColorProvider
 @Composable
 fun SmokeLogWidgetContent(
     count: Int = 3,
-    lastTime: String = "1시간 전"
+    lastTime: String = "1시간 전",
 ) {
     Column(
         modifier = GlanceModifier

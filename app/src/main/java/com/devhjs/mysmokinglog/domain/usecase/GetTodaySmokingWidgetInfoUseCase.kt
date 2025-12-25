@@ -4,7 +4,7 @@ import com.devhjs.mysmokinglog.core.util.formatTimeAgo
 import com.devhjs.mysmokinglog.domain.model.TodaySmoking
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
-import kotlinx.coroutines.flow.first
+// import kotlinx.coroutines.flow.first
 import java.time.Clock
 import java.time.LocalDate
 
@@ -17,12 +17,10 @@ class GetTodaySmokingWidgetInfoUseCase(
         val today = LocalDate.now(clock).toString()
 
         val events = smokingRepository
-            .getSmokingEventsByDate(today)
-            .first()
+            .getSmokingEventsByDateList(today)
 
         val lastEvent = smokingRepository
-            .getLastSmokingEvent()
-            .first()
+            .getLastSmokingEventItem()
 
         val dailyLimit = userSettingRepository.getSettings().dailyLimit
 

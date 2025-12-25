@@ -7,6 +7,7 @@ data class HomeState(
     val lastSmokingTime: String = "",
     val status: SmokingStatus = SmokingStatus.SAFE,
     val isUndoVisible: Boolean = false,
+    val observedDate: String = "",
 )
 
 enum class SmokingStatus {

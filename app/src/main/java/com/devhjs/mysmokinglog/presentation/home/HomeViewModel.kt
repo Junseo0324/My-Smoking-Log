@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -52,7 +53,8 @@ class HomeViewModel @Inject constructor(
                                 todayCount = data.count,
                                 dailyLimit = data.dailyLimit,
                                 lastSmokingTime = data.lastSmokingTime,
-                                status = status
+                                status = status,
+                                observedDate = LocalDate.now().toString()
                             )
                         }
                     }
@@ -64,6 +66,10 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun checkData() {
+        fetchData()
     }
 
     fun onAction(action: HomeAction) {

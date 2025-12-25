@@ -42,6 +42,13 @@ interface SmokingDao {
         LIMIT 1
     """)
     fun getLastEvent(): Flow<SmokingEntity?>
+    
+    // 위젯용 Direct Access
+    @Query("SELECT * FROM smoking_event WHERE date = :date ORDER BY timestamp DESC")
+    suspend fun getEventsByDateList(date: String): List<SmokingEntity>
+
+    @Query("SELECT * FROM smoking_event ORDER BY timestamp DESC LIMIT 1")
+    suspend fun getLastEventItem(): SmokingEntity?
 
     @Query("SELECT * FROM smoking_event WHERE date BETWEEN :startDate AND :endDate")
     fun getEventsBetweenFlow(startDate: String, endDate: String): Flow<List<SmokingEntity>>

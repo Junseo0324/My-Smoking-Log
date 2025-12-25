@@ -12,6 +12,10 @@ interface SmokingRepository {
 
     fun getLastSmokingEvent(): Flow<Smoking?>
 
+    suspend fun getSmokingEventsByDateList(date: String): List<Smoking>
+    
+    suspend fun getLastSmokingEventItem(): Smoking?
+
 
 
     fun getSmokingEventsBetweenFlow(startDate: String, endDate: String): Flow<List<Smoking>>

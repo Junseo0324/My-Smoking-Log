@@ -3,8 +3,10 @@ package com.devhjs.mysmokinglog.presentation.widget
 import android.content.Context
 import androidx.glance.GlanceId
 import androidx.glance.action.ActionParameters
+import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.action.ActionCallback
-import androidx.glance.appwidget.updateAll
+import androidx.glance.appwidget.state.updateAppWidgetState
+import androidx.glance.state.PreferencesGlanceStateDefinition
 
 
 class AddSmokeAction : ActionCallback {
@@ -14,13 +16,28 @@ class AddSmokeAction : ActionCallback {
         glanceId: GlanceId,
         parameters: ActionParameters
     ) {
-        val useCase = WidgetServiceLocator.addSmokingUseCase(context)
+        WidgetServiceLocator.addSmokingUseCase(context).execute()
 
-        useCase.execute()
+        val infoUseCase = WidgetServiceLocator.getTodaySmokingWidgetUseCase(context)
+        val state = infoUseCase.execute()
 
-        // ✅ 위젯 다시 갱신
-//        SmokeLogWidget().update(context, glanceId)
-        SmokeLogWidget().updateAll(context)
+        val manager = GlanceAppWidgetManager(context)
+        val widget = SmokeLogWidget()
+        val glanceIds = manager.getGlanceIds(widget.javaClass)
+
+        glanceIds.forEach { glanceId ->
+            updateAppWidgetState(
+                context = context,
+                definition = PreferencesGlanceStateDefinition,
+                glanceId = glanceId
+            ) { prefs ->
+                prefs.toMutablePreferences().apply {
+                    this[SmokeLogWidget.countKey] = state.count
+                    this[SmokeLogWidget.lastTimeKey] = state.lastSmokingTime
+                }
+            }
+            widget.update(context, glanceId)
+        }
 
     }
 }
