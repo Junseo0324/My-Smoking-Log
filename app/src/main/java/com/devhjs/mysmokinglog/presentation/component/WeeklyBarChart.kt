@@ -4,6 +4,7 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,7 +19,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
@@ -26,7 +30,11 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,6 +54,7 @@ fun WeeklyBarChart(
     val axisMax = if (maxVal == 0f) 10f else maxVal + (maxVal * 0.1f)
     
     val animatable = remember { Animatable(0f) }
+    var selectedIndex by remember { mutableStateOf<Int?>(null) }
 
     LaunchedEffect(weeklyData) {
         animatable.animateTo(
@@ -107,7 +116,20 @@ fun WeeklyBarChart(
                         .fillMaxWidth()
                         .weight(1f)
                 ) {
-                    Canvas(modifier = Modifier.fillMaxSize()) {
+
+                    Canvas(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .pointerInput(Unit) {
+                                detectTapGestures { offset ->
+                                    val barWidth = size.width / 7
+                                    val index = (offset.x / barWidth).toInt()
+                                    if (index in 0..6) {
+                                        selectedIndex = if (selectedIndex == index) null else index
+                                    }
+                                }
+                            }
+                    ) {
                         val barWidth = size.width / 7
                         val barSpacing = barWidth * 0.3f
                         val effectiveBarWidth = barWidth - barSpacing
@@ -138,6 +160,9 @@ fun WeeklyBarChart(
                             val x = (index * barWidth) + (barSpacing / 2)
                             val y = size.height - barHeight
 
+                            val isSelected = selectedIndex == index
+                            val barColor = if (isSelected) AppColors.PrimaryColor else AppColors.PrimaryColor.copy(alpha = 0.5f)
+
                             // Draw Bar
                             val path = Path().apply {
                                 addRoundRect(
@@ -150,7 +175,24 @@ fun WeeklyBarChart(
                                     )
                                 )
                             }
-                            drawPath(path, color = AppColors.PrimaryColor)
+                            drawPath(path, color = barColor)
+
+                            if (isSelected) {
+                                val text = "${value}개"
+                                val paint = Paint().asFrameworkPaint().apply {
+                                    isAntiAlias = true
+                                    textSize = 12.sp.toPx()
+                                    color = AppColors.White.toArgb()
+                                    textAlign = android.graphics.Paint.Align.CENTER
+                                }
+                                
+                                drawContext.canvas.nativeCanvas.drawText(
+                                    text,
+                                    x + effectiveBarWidth / 2,
+                                    y - 10.dp.toPx(),
+                                    paint
+                                )
+                            }
                         }
                     }
                 }
