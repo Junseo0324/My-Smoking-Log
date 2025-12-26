@@ -28,7 +28,7 @@ fun SmokeLogWidgetContent(
     Column(
         modifier = GlanceModifier
             .fillMaxSize()
-            .background(ColorProvider(Color(0x800A0A0E)))
+            .background(ColorProvider(Color(0xDE0A0A0E)))
             .padding(10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -40,7 +40,7 @@ fun SmokeLogWidgetContent(
             style = TextStyle(
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp,
-                color = ColorProvider(Color.White)
+                color = ColorProvider(Color(0xFFFFFFFF)),
             )
         )
 
@@ -61,7 +61,7 @@ fun SmokeLogWidgetContent(
             style = TextStyle(
                 fontWeight = FontWeight.Bold,
                 fontSize = 14.sp,
-                color = ColorProvider(Color.White)
+                color = ColorProvider(Color(0xFFFFFFFF)),
             )
         )
 
