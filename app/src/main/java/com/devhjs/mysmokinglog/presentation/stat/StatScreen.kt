@@ -25,6 +25,7 @@ import com.devhjs.mysmokinglog.presentation.component.WeeklyBarChart
 import com.devhjs.mysmokinglog.ui.AppColors
 import com.devhjs.mysmokinglog.ui.AppTextStyles
 
+
 @Composable
 fun StatScreen(
     modifier: Modifier = Modifier,
@@ -104,7 +105,7 @@ private fun StatScreenPreview() {
         state = StatState(
             streak = 10,
             longestStreak = 15,
-            thisMonthCost = 100000,
+            thisMonthCost = "100,000",
             cigarettesTotalCount = 100,
             packCount = 10,
             weeklyCigarettes = listOf(1, 2, 3, 4, 5, 6, 7),

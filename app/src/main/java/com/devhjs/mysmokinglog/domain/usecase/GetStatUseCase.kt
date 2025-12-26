@@ -7,6 +7,7 @@ import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
 import com.devhjs.mysmokinglog.presentation.stat.StatState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import java.text.DecimalFormat
 import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate
@@ -118,7 +119,7 @@ class GetStatUseCase @Inject constructor(
             StatState(
                 streak = currentStreakDays,
                 longestStreak = maxGapHours.toInt(),
-                thisMonthCost = monthCost,
+                thisMonthCost = DecimalFormat("#,##0").format(monthCost),
                 cigarettesTotalCount = monthCount,
                 packCount = packCount,
                 weeklyCigarettes = weeklyCounts,
