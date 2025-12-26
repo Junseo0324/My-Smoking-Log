@@ -128,4 +128,17 @@ class HomeViewModelTest {
         // Then - 사라짐
         assertEquals(false, viewModel.state.value.isUndoVisible)
     }
+
+    @Test
+    fun `흡연_삭제_액션이_유즈케이스를_호출하는지_테스트`() = runTest {
+        // Given
+        coEvery { deleteSmokingUseCase.execute() } returns Result.Success(Unit)
+        
+        // When
+        viewModel.onAction(HomeAction.DeleteSmoking)
+        testDispatcher.scheduler.advanceUntilIdle() // Flow debounce (throttleFirst) 대기
+        
+        // Then
+        coVerify { deleteSmokingUseCase.execute() }
+    }
 }
