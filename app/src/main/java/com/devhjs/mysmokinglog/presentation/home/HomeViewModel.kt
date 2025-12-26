@@ -5,14 +5,18 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devhjs.mysmokinglog.core.util.Result
+import com.devhjs.mysmokinglog.core.util.throttleFirst
 import com.devhjs.mysmokinglog.domain.usecase.AddSmokingUseCase
 import com.devhjs.mysmokinglog.domain.usecase.DeleteSmokingUseCase
 import com.devhjs.mysmokinglog.domain.usecase.GetTodaySmokingInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -30,9 +34,21 @@ class HomeViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
 
+    private val _deleteEvent = MutableSharedFlow<Unit>()
+    
     init {
         fetchData()
+        
+        _deleteEvent
+            .throttleFirst(500L)
+            .onEach {
+                _state.update { it.copy(isUndoVisible = false) }
+                deleteSmokingUseCase.execute()
+            }
+            .launchIn(viewModelScope)
     }
+
+
 
     fun fetchData() {
         viewModelScope.launch {
@@ -92,8 +108,7 @@ class HomeViewModel @Inject constructor(
 
     private fun deleteSmokingHistory() {
         viewModelScope.launch {
-            _state.update { it.copy(isUndoVisible = false) }
-            deleteSmokingUseCase.execute()
+            _deleteEvent.emit(Unit)
         }
     }
 
