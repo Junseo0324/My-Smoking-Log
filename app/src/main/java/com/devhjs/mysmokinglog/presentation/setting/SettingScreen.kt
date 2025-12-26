@@ -241,7 +241,7 @@ fun SettingScreen(
             )
             Spacer(modifier = Modifier.height(3.dp))
             Text(
-                text = "v1.0.0",
+                text = "v${state.appVersion}",
                 style = AppTextStyles.smallTextRegular.copy(color = AppColors.Gray)
             )
         }

@@ -2,6 +2,7 @@ package com.devhjs.mysmokinglog.presentation.setting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devhjs.mysmokinglog.BuildConfig
 import com.devhjs.mysmokinglog.core.util.Result
 import com.devhjs.mysmokinglog.domain.model.UserSetting
 import com.devhjs.mysmokinglog.domain.usecase.GetSettingsUseCase
@@ -37,7 +38,8 @@ class SettingsViewModel @Inject constructor(
                             isLoading = false,
                             dailyLimit = result.data.dailyLimit,
                             packPrice = result.data.packPrice,
-                            cigarettesPerPackage = result.data.cigarettesPerPackage
+                            cigarettesPerPackage = result.data.cigarettesPerPackage,
+                            appVersion = BuildConfig.VERSION_NAME
                         )
                     }
                     is Result.Error -> {
