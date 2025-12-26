@@ -6,14 +6,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.Button
+import androidx.glance.ButtonDefaults
 import androidx.glance.GlanceModifier
 import androidx.glance.appwidget.action.actionRunCallback
 import androidx.glance.background
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Column
-import androidx.glance.layout.Spacer
 import androidx.glance.layout.fillMaxSize
-import androidx.glance.layout.height
+import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
@@ -28,14 +28,15 @@ fun SmokeLogWidgetContent(
     Column(
         modifier = GlanceModifier
             .fillMaxSize()
-            .background(ColorProvider(Color(0x400A0A0E)))
-            .padding(12.dp),
+            .background(ColorProvider(Color(0x800A0A0E)))
+            .padding(10.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalAlignment = Alignment.Start
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Text(
-            text = "오늘 흡연",
+            text = "오늘의 흡연",
+            modifier = GlanceModifier.padding(bottom = 5.dp),
             style = TextStyle(
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp,
@@ -43,28 +44,34 @@ fun SmokeLogWidgetContent(
             )
         )
 
+
         Text(
-            text = "$count 회",
+            text = "$count 개비",
+            modifier = GlanceModifier.padding(bottom = 5.dp),
             style = TextStyle(
                 fontWeight = FontWeight.Bold,
-                fontSize = 24.sp,
-                color = ColorProvider(Color.White)
+                fontSize = 20.sp,
+                color = ColorProvider(color = Color(0xFF34D399))
             )
         )
 
         Text(
-            text = "마지막: $lastTime",
+            text = lastTime,
+            modifier = GlanceModifier.padding(bottom = 8.dp),
             style = TextStyle(
                 fontWeight = FontWeight.Bold,
-                fontSize = 16.sp,
+                fontSize = 14.sp,
                 color = ColorProvider(Color.White)
             )
         )
-
-        Spacer(GlanceModifier.height(8.dp))
 
         Button(
             text = "+",
+            modifier = GlanceModifier.padding(8.dp).fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = ColorProvider(Color(0xFFFFFFFF)),
+                contentColor = ColorProvider(Color(0xFF000000))
+            ),
             onClick = actionRunCallback<AddSmokeAction>()
         )
     }
