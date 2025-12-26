@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devhjs.mysmokinglog.ui.AppColors
@@ -28,7 +29,9 @@ fun StatCardHeader(
         Spacer(modifier = Modifier.height(5.dp))
         Text(
             text = state,
-            style = AppTextStyles.headerTextBold.copy(color = AppColors.White)
+            style = AppTextStyles.headerTextBold.copy(color = AppColors.White),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
 
         )
         Spacer(modifier = Modifier.height(5.dp))

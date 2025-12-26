@@ -63,11 +63,21 @@ fun StatScreen(
                 modifier = modifier.weight(1f)
             ) {
                 StatCardHeader(
-                    title = "최장 미흡연",
-                    state = "${state.longestStreak}",
-                    description = "시간"
+                    title = "평균 흡연 간격",
+                    state = state.averageSmokingInterval,
+                    description = "분"
                 )
             }
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+        SmokingLogCard(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            StatCardHeader(
+                title = "최장 미흡연",
+                state = state.longestStreak,
+                description = "몸이 쉬고 있었던 가장 긴 시간이에요"
+            )
         }
         Spacer(modifier = Modifier.height(20.dp))
         SmokingLogCard {
@@ -104,7 +114,8 @@ private fun StatScreenPreview() {
     StatScreen(
         state = StatState(
             streak = 10,
-            longestStreak = 15,
+            averageSmokingInterval = "90",
+            longestStreak = "15시간",
             thisMonthCost = "100,000",
             cigarettesTotalCount = 100,
             packCount = 10,

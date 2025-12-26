@@ -115,10 +115,29 @@ class GetStatUseCase @Inject constructor(
                 0
             }
 
+            // E. 평균 흡연 간격
+            val averageIntervalString = if (allEvents.size >= 2) {
+                val firstTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents.first().timestamp), ZoneId.systemDefault())
+                val lastTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents.last().timestamp), ZoneId.systemDefault())
+                val totalDurationMinutes = ChronoUnit.MINUTES.between(firstTime, lastTime)
+                val averageMinutes = totalDurationMinutes / (allEvents.size - 1)
+                
+                "${averageMinutes}"
+            } else {
+                "-"
+            }
+
             // 최종 상태 객체 생성 및 방출
             StatState(
                 streak = currentStreakDays,
-                longestStreak = maxGapHours.toInt(),
+                averageSmokingInterval = averageIntervalString,
+                longestStreak = if (maxGapHours >= 24) {
+                    val days = maxGapHours / 24
+                    val hours = maxGapHours % 24
+                    if (hours > 0) "${days}일 ${hours}시간" else "${days}일"
+                } else {
+                    "${maxGapHours}시간"
+                },
                 thisMonthCost = DecimalFormat("#,##0").format(monthCost),
                 cigarettesTotalCount = monthCount,
                 packCount = packCount,
