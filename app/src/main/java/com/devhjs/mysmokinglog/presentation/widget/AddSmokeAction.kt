@@ -33,7 +33,7 @@ class AddSmokeAction : ActionCallback {
             ) { prefs ->
                 prefs.toMutablePreferences().apply {
                     this[SmokeLogWidget.countKey] = state.count
-                    this[SmokeLogWidget.lastTimeKey] = state.lastSmokingTime
+                    this[SmokeLogWidget.lastTimestampKey] = state.lastSmokingTimestamp ?: 0L
                 }
             }
             widget.update(context, glanceId)

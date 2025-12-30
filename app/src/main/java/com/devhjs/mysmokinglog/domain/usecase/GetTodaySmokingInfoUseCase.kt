@@ -3,7 +3,7 @@ package com.devhjs.mysmokinglog.domain.usecase
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.devhjs.mysmokinglog.core.util.Result
-import com.devhjs.mysmokinglog.core.util.formatTimeAgo
+
 import com.devhjs.mysmokinglog.domain.model.TodaySmoking
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
@@ -30,13 +30,13 @@ class GetTodaySmokingInfoUseCase @Inject constructor(
             try {
                 val dailyLimit = userSettingRepository.getSettings().dailyLimit
                 val count = events.size
-                val lastSmokingTime = lastEvent?.let { formatTimeAgo(it.timestamp, clock) } ?: ""
+                val lastSmokingTimestamp = lastEvent?.timestamp
                 
                 Result.Success(
                     TodaySmoking(
                         count = count,
                         dailyLimit = dailyLimit,
-                        lastSmokingTime = lastSmokingTime
+                        lastSmokingTimestamp = lastSmokingTimestamp
                     )
                 )
             } catch (e: Throwable) {

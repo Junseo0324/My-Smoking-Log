@@ -7,6 +7,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.core.routing.BottomNavItem
 import com.devhjs.mysmokinglog.core.routing.MainRoute
@@ -20,17 +21,17 @@ fun BottomNavigationBar(
     val bottomNavItems = listOf(
         BottomNavItem(
             route = MainRoute.Home,
-            label = "홈",
+            label = stringResource(R.string.nav_home),
             icon = painterResource(R.drawable.home)
         ),
         BottomNavItem(
             route = MainRoute.Stat,
-            label = "통계",
+            label = stringResource(R.string.nav_stat),
             icon = painterResource(R.drawable.stat)
         ),
         BottomNavItem(
             route = MainRoute.Setting,
-            label = "설정",
+            label = stringResource(R.string.nav_setting),
             icon = painterResource(R.drawable.setting)
         )
     )

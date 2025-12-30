@@ -1,9 +1,8 @@
 package com.devhjs.mysmokinglog.presentation.stat
 
+import android.app.Activity
 import android.os.Build
 import androidx.annotation.RequiresApi
-import android.app.Activity
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devhjs.mysmokinglog.domain.usecase.GetStatUseCase
@@ -42,8 +41,5 @@ class StatViewModel @Inject constructor(
                 }
         }
     }
-    
-    fun refresh() {
-        loadStats()
-    }
+
 }

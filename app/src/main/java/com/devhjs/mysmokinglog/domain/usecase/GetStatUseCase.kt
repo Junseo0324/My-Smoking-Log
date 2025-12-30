@@ -7,7 +7,7 @@ import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
 import com.devhjs.mysmokinglog.presentation.stat.StatState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import java.text.DecimalFormat
+
 import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate
@@ -116,29 +116,22 @@ class GetStatUseCase @Inject constructor(
             }
 
             // E. 평균 흡연 간격
-            val averageIntervalString = if (allEvents.size >= 2) {
+            // E. 평균 흡연 간격
+            val averageInterval = if (allEvents.size >= 2) {
                 val firstTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents.first().timestamp), ZoneId.systemDefault())
                 val lastTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents.last().timestamp), ZoneId.systemDefault())
                 val totalDurationMinutes = ChronoUnit.MINUTES.between(firstTime, lastTime)
-                val averageMinutes = totalDurationMinutes / (allEvents.size - 1)
-                
-                "${averageMinutes}"
+                totalDurationMinutes / (allEvents.size - 1)
             } else {
-                "-"
+                null
             }
 
             // 최종 상태 객체 생성 및 방출
             StatState(
                 streak = currentStreakDays,
-                averageSmokingInterval = averageIntervalString,
-                longestStreak = if (maxGapHours >= 24) {
-                    val days = maxGapHours / 24
-                    val hours = maxGapHours % 24
-                    if (hours > 0) "${days}일 ${hours}시간" else "${days}일"
-                } else {
-                    "${maxGapHours}시간"
-                },
-                thisMonthCost = DecimalFormat("#,##0").format(monthCost),
+                averageSmokingInterval = averageInterval,
+                longestStreak = maxGapHours,
+                thisMonthCost = monthCost,
                 cigarettesTotalCount = monthCount,
                 packCount = packCount,
                 weeklyCigarettes = weeklyCounts,

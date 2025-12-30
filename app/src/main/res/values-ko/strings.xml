@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">Smoke Log</string>
+    <!-- Navigation -->
+    <string name="nav_home">홈</string>
+    <string name="nav_stat">통계</string>
+    <string name="nav_setting">설정</string>
+
+    <!-- Home -->
+    <string name="home_daily_limit_format">하루 상한선 : %d개비</string>
+    <string name="home_last_smoked_label">마지막으로 핀 지</string>
+    <string name="home_add_cig_button">+ 한 개비</string>
+    <string name="home_undo_button">되돌리기</string>
+    <string name="home_clock_cd">시계</string>
+    <string name="unit_cig">개비</string>
+    <string name="home_curr_cig_unit">개비</string>
+
+    <!-- Stat -->
+    <string name="stat_title">통계</string>
+    <string name="stat_streak_title">흡연 지속 일수</string>
+    <string name="stat_streak_desc">일 연속</string>
+    <string name="stat_avg_interval_title">평균 흡연 간격</string>
+    <string name="stat_avg_interval_desc">분</string>
+    <string name="stat_longest_break_title">최장 미흡연</string>
+    <string name="stat_longest_break_desc">몸이 쉬고 있었던 가장 긴 시간이에요</string>
+    <string name="stat_cost_title">줄일 수 있었던 지출</string>
+    <string name="stat_cost_desc_format">총 %1$d 개비 (%2$d 갑)</string>
+
+    <!-- Time Formatting -->
+    <string name="time_just_now">방금 전</string>
+    <string name="time_fmt_mins_ago">%d분 전</string>
+    <string name="time_fmt_hours_ago">%d시간 전</string>
+    <string name="time_fmt_days_ago">%d일 전</string>
+    <string name="duration_fmt_days_hours">%1$d일 %2$d시간</string>
+    <string name="duration_fmt_days">%d일</string>
+    <string name="duration_fmt_hours">%d시간</string>
+    <string name="duration_none">-</string>
+
+    <!-- Charts -->
+    <string name="chart_daily_title">흡연이 발생한 시간대 분포</string>
+    <string name="chart_daily_desc">* 흡연이 자주 발생하는 시간대를 확인하여 유혹을 피하거나 대비하는 데 도움을 줍니다.</string>
+    <string name="chart_weekly_title">주간 흡연 패턴</string>
+    <string name="chart_weekly_desc">* 일주일 간 흡연 패턴을 시각화하여 변화를 인식하는데 도움을 줍니다.</string>
+    <string name="chart_time_format">%d시</string>
+    <string name="chart_freq_title">시간대별 흡연 빈도</string>
+    <string name="chart_freq_low">적음</string>
+    <string name="chart_freq_high">많음</string>
+    
+    <string name="day_mon">월</string>
+    <string name="day_tue">화</string>
+    <string name="day_wed">수</string>
+    <string name="day_thu">목</string>
+    <string name="day_fri">금</string>
+    <string name="day_sat">토</string>
+    <string name="day_sun">일</string>
+    <string name="count_suffix">개</string>
+
+    <!-- Settings -->
+    <string name="settings_title">설정</string>
+    <string name="settings_subtitle">흡연 습관을 인식하기 위한 기준을 설정하세요</string>
+    <string name="settings_daily_goal_title">하루 목표</string>
+    <string name="settings_daily_goal_subtitle">줄이기 위한 기준 개비 수</string>
+    <string name="settings_unit_1">1개비</string>
+    <string name="settings_unit_100">100개비</string>
+    <string name="settings_cost_title">비용 기준</string>
+    <string name="settings_cost_subtitle">비용 계산을 위한 기준 가격</string>
+    <string name="settings_note_title">알아두세요</string>
+    <string name="settings_note_daily_goal">하루 목표는 참고용 기준입니다</string>
+    <string name="settings_note_health">흡연은 건강에 해로울 수 있습니다</string>
+    <string name="settings_note_autosave">설정은 자동으로 저장됩니다</string>
+    <string name="settings_app_name">Smoke Log</string>
+    <string name="settings_version_prefix">v</string>
+</resources>

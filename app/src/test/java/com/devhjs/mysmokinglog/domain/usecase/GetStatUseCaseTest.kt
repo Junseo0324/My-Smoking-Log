@@ -48,15 +48,16 @@ class GetStatUseCaseTest {
         // Then
         assertEquals(3, stats.cigarettesTotalCount)
         // 비용: 3개 * (4500 / 20) = 3 * 225 = 675
-        assertEquals("675", stats.thisMonthCost)
+        assertEquals(675, stats.thisMonthCost)
         
         // 오늘 개수: 2개 (오늘 01:00, 02:00)
         assertEquals(2, stats.todayTime.sum())
         
-        assertEquals("1일", stats.longestStreak)
+        // 1일 = 24시간
+        assertEquals(24L, stats.longestStreak)
         
         assertEquals(0, stats.streak)
-        assertEquals("750", stats.averageSmokingInterval)
+        assertEquals(750L, stats.averageSmokingInterval)
     }
 
     @Test
@@ -70,10 +71,10 @@ class GetStatUseCaseTest {
 
         // Then
         assertEquals(0, stats.cigarettesTotalCount)
-        assertEquals("0", stats.thisMonthCost)
-        assertEquals("0시간", stats.longestStreak)
+        assertEquals(0, stats.thisMonthCost)
+        assertEquals(0L, stats.longestStreak)
         assertEquals(0, stats.streak)
-        assertEquals("-", stats.averageSmokingInterval)
+        assertEquals(null, stats.averageSmokingInterval)
         assertEquals(0, stats.todayTime.sum())
     }
 }

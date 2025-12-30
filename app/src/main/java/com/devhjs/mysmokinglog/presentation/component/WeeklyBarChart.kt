@@ -39,6 +39,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.ui.AppColors
 import com.devhjs.mysmokinglog.ui.AppTextStyles
 
@@ -49,12 +51,21 @@ fun WeeklyBarChart(
 ) {
     if (weeklyData.isEmpty()) return
 
-    val days = listOf("월", "화", "수", "목", "금", "토", "일")
+    val days = listOf(
+        stringResource(R.string.day_mon),
+        stringResource(R.string.day_tue),
+        stringResource(R.string.day_wed),
+        stringResource(R.string.day_thu),
+        stringResource(R.string.day_fri),
+        stringResource(R.string.day_sat),
+        stringResource(R.string.day_sun)
+    )
     val maxVal = weeklyData.maxOrNull()?.toFloat() ?: 10f
     val axisMax = if (maxVal == 0f) 10f else maxVal + (maxVal * 0.1f)
     
     val animatable = remember { Animatable(0f) }
     var selectedIndex by remember { mutableStateOf<Int?>(null) }
+    val countSuffix = stringResource(R.string.count_suffix)
 
     LaunchedEffect(weeklyData) {
         animatable.animateTo(
@@ -68,12 +79,12 @@ fun WeeklyBarChart(
 
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
-            text = "주간 흡연 패턴",
+            text = stringResource(R.string.chart_weekly_title),
             style = AppTextStyles.titleTextBold.copy(fontSize = 18.sp, color = AppColors.White)
         )
         Spacer(modifier = Modifier.height(5.dp))
         Text(
-            text = "* 일주일 간 흡연 패턴을 시각화하여 변화를 인식하는데 도움을 줍니다.",
+            text = stringResource(R.string.chart_weekly_desc),
             style = AppTextStyles.smallTextRegular.copy(color = AppColors.White)
         )
         Spacer(modifier = Modifier.height(20.dp))
@@ -178,7 +189,7 @@ fun WeeklyBarChart(
                             drawPath(path, color = barColor)
 
                             if (isSelected) {
-                                val text = "${value}개"
+                                val text = "${value}${countSuffix}"
                                 val paint = Paint().asFrameworkPaint().apply {
                                     isAntiAlias = true
                                     textSize = 12.sp.toPx()

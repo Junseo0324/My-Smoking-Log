@@ -26,7 +26,7 @@ fun PricePresetButton(
 ) {
     val backgroundColor = if (isSelected) AppColors.White else AppColors.Black20
     val textColor = if (isSelected) AppColors.Black else AppColors.White
-    val format = NumberFormat.getCurrencyInstance(Locale.KOREA)
+    val format = NumberFormat.getCurrencyInstance(Locale.getDefault())
 
     Box(
         modifier = modifier

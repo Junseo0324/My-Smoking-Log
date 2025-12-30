@@ -32,7 +32,7 @@ class HomeViewModelTest {
     private val testDispatcher = StandardTestDispatcher()
 
 
-    private val _dataFlow = MutableStateFlow<Result<TodaySmoking, Throwable>>(Result.Success(TodaySmoking(0, 10, "")))
+    private val _dataFlow = MutableStateFlow<Result<TodaySmoking, Throwable>>(Result.Success(TodaySmoking(0, 10, null)))
 
     @Before
     fun `초기화`() {
@@ -59,7 +59,7 @@ class HomeViewModelTest {
         val initialData = TodaySmoking(
             count = 0,
             dailyLimit = 10,
-            lastSmokingTime = "None"
+            lastSmokingTimestamp = null
         )
         _dataFlow.emit(Result.Success(initialData))
         testDispatcher.scheduler.advanceUntilIdle()
@@ -78,31 +78,31 @@ class HomeViewModelTest {
         val updatedData = TodaySmoking(
             count = 1,
             dailyLimit = 10,
-            lastSmokingTime = "방금 전"
+            lastSmokingTimestamp = 1000L
         )
         _dataFlow.emit(Result.Success(updatedData))
         testDispatcher.scheduler.advanceUntilIdle()
 
         assertEquals(1, viewModel.state.value.todayCount)
-        assertEquals("방금 전", viewModel.state.value.lastSmokingTime)
+        assertEquals(1000L, viewModel.state.value.lastSmokingTimestamp)
     }
 
     @Test
     fun `흡연_상태가_정상적으로_계산되는지_테스트`() = runTest {
         // Given
-        val safeData = TodaySmoking(count = 5, dailyLimit = 10, lastSmokingTime = "")
+        val safeData = TodaySmoking(count = 5, dailyLimit = 10, lastSmokingTimestamp = null)
         _dataFlow.emit(Result.Success(safeData))
         testDispatcher.scheduler.advanceUntilIdle()
         assertEquals(SmokingStatus.SAFE, viewModel.state.value.status)
 
         // Given
-        val warningData = TodaySmoking(count = 8, dailyLimit = 10, lastSmokingTime = "")
+        val warningData = TodaySmoking(count = 8, dailyLimit = 10, lastSmokingTimestamp = null)
         _dataFlow.emit(Result.Success(warningData))
         testDispatcher.scheduler.advanceUntilIdle()
         assertEquals(SmokingStatus.WARNING, viewModel.state.value.status)
 
         // Given
-        val exceededData = TodaySmoking(count = 11, dailyLimit = 10, lastSmokingTime = "")
+        val exceededData = TodaySmoking(count = 11, dailyLimit = 10, lastSmokingTimestamp = null)
         _dataFlow.emit(Result.Success(exceededData))
         testDispatcher.scheduler.advanceUntilIdle()
         assertEquals(SmokingStatus.EXCEEDED, viewModel.state.value.status)

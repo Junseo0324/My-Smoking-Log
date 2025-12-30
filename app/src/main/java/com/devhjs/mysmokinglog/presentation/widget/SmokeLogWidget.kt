@@ -3,7 +3,9 @@ package com.devhjs.mysmokinglog.presentation.widget
 import android.content.Context
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.devhjs.mysmokinglog.presentation.util.TimeFormatter
 import androidx.glance.GlanceId
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.provideContent
@@ -20,7 +22,13 @@ class SmokeLogWidget : GlanceAppWidget() {
             val prefs = currentState<Preferences>()
             
             val count = prefs[countKey] ?: 0
-            val lastTime = prefs[lastTimeKey] ?: ""
+            val lastTimestamp = prefs[lastTimestampKey] ?: 0L
+            
+            val lastTime = if (lastTimestamp > 0) {
+                 TimeFormatter.formatTimeAgo(context, lastTimestamp)
+            } else {
+                 "-" 
+            }
 
             SmokeLogWidgetContent(
                 count = count,
@@ -31,6 +39,6 @@ class SmokeLogWidget : GlanceAppWidget() {
 
     companion object {
         val countKey = intPreferencesKey("count")
-        val lastTimeKey = stringPreferencesKey("last_time")
+        val lastTimestampKey = longPreferencesKey("last_timestamp")
     }
 }

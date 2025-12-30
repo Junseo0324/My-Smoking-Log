@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,12 +57,12 @@ fun SettingScreen(
         Spacer(modifier = Modifier.height(40.dp))
 
         Text(
-            text = "설정",
+            text = stringResource(R.string.settings_title),
             style = AppTextStyles.titleTextBold.copy(fontSize = 24.sp, color = AppColors.White)
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "흡연 습관을 인식하기 위한 기준을 설정하세요",
+            text = stringResource(R.string.settings_subtitle),
             style = AppTextStyles.normalTextRegular.copy(color = AppColors.Gray)
         )
 
@@ -71,8 +72,8 @@ fun SettingScreen(
             Column {
                 SettingsCardHeader(
                     painter = painterResource(R.drawable.check),
-                    title = "하루 목표",
-                    subtitle = "줄이기 위한 기준 개비 수",
+                    title = stringResource(R.string.settings_daily_goal_title),
+                    subtitle = stringResource(R.string.settings_daily_goal_subtitle),
                     iconTint = AppColors.PrimaryColor
                 )
 
@@ -98,7 +99,7 @@ fun SettingScreen(
                             .padding(horizontal = 12.dp, vertical = 8.dp)
                     ) {
                         Text(
-                            text = "${state.dailyLimit} 개비",
+                            text = "${state.dailyLimit} ${stringResource(R.string.unit_cig)}",
                             style = AppTextStyles.smallTextBold.copy(color = AppColors.White)
                         )
                     }
@@ -110,11 +111,11 @@ fun SettingScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "1개비",
+                        text = stringResource(R.string.settings_unit_1),
                         style = AppTextStyles.smallTextRegular.copy(color = AppColors.Gray)
                     )
                     Text(
-                        text = "100개비",
+                        text = stringResource(R.string.settings_unit_100),
                         style = AppTextStyles.smallTextRegular.copy(color = AppColors.Gray)
                     )
                 }
@@ -127,8 +128,8 @@ fun SettingScreen(
             Column {
                 SettingsCardHeader(
                     painter = painterResource(R.drawable.money),
-                    title = "비용 기준",
-                    subtitle = "비용 계산을 위한 기준 가격",
+                    title = stringResource(R.string.settings_cost_title),
+                    subtitle = stringResource(R.string.settings_cost_subtitle),
                     iconTint = AppColors.ThirdColor
                 )
 
@@ -142,7 +143,7 @@ fun SettingScreen(
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
-                            text = "₩ ",
+                            text = java.util.Currency.getInstance(java.util.Locale.getDefault()).symbol + " ",
                             style = AppTextStyles.titleTextBold.copy(
                                 fontSize = 20.sp,
                                 color = AppColors.White
@@ -216,14 +217,14 @@ fun SettingScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "알아두세요",
+                        text = stringResource(R.string.settings_note_title),
                         style = AppTextStyles.normalTextBold.copy(color = AppColors.White)
                     )
                 }
                 Spacer(modifier = Modifier.height(12.dp))
-                InfoItem("하루 목표는 참고용 기준입니다")
-                InfoItem("흡연은 건강에 해로울 수 있습니다")
-                InfoItem("설정은 자동으로 저장됩니다")
+                InfoItem(stringResource(R.string.settings_note_daily_goal))
+                InfoItem(stringResource(R.string.settings_note_health))
+                InfoItem(stringResource(R.string.settings_note_autosave))
             }
         }
         Spacer(modifier = Modifier.height(10.dp))
@@ -236,12 +237,12 @@ fun SettingScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Smoke Log",
+                text = stringResource(R.string.settings_app_name),
                 style = AppTextStyles.normalTextRegular.copy(color = AppColors.Gray)
             )
             Spacer(modifier = Modifier.height(3.dp))
             Text(
-                text = "v${state.appVersion}",
+                text = "${stringResource(R.string.settings_version_prefix)}${state.appVersion}",
                 style = AppTextStyles.smallTextRegular.copy(color = AppColors.Gray)
             )
         }

@@ -68,7 +68,7 @@ class HomeViewModel @Inject constructor(
                                 isLoading = false,
                                 todayCount = data.count,
                                 dailyLimit = data.dailyLimit,
-                                lastSmokingTime = data.lastSmokingTime,
+                                lastSmokingTimestamp = data.lastSmokingTimestamp,
                                 status = status,
                                 observedDate = LocalDate.now().toString()
                             )

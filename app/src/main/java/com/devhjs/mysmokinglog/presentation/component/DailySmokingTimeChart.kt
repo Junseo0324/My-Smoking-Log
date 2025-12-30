@@ -20,6 +20,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.ui.AppColors
 import com.devhjs.mysmokinglog.ui.AppTextStyles
 
@@ -30,12 +32,12 @@ fun DailySmokingTimeChart(
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
-            text = "흡연이 발생한 시간대 분포",
+            text = stringResource(R.string.chart_daily_title),
             style = AppTextStyles.titleTextBold.copy(fontSize = 18.sp, color = AppColors.White)
         )
         Spacer(modifier = Modifier.height(5.dp))
         Text(
-            text = "* 흡연이 자주 발생하는 시간대를 확인하여 유혹을 피하거나 대비하는 데 도움을 줍니다.",
+            text = stringResource(R.string.chart_daily_desc),
             style = AppTextStyles.smallTextRegular.copy(color = AppColors.White)
         )
         Spacer(modifier = Modifier.height(20.dp))
@@ -44,9 +46,9 @@ fun DailySmokingTimeChart(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            listOf("0시", "6시", "12시", "18시", "24시").forEach { time ->
+            listOf(0, 6, 12, 18, 24).forEach { time ->
                 Text(
-                    text = time,
+                    text = stringResource(R.string.chart_time_format, time),
                     style = AppTextStyles.smallTextRegular.copy(color = AppColors.Gray80)
                 )
             }
@@ -92,7 +94,7 @@ fun DailySmokingTimeChart(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "시간대별 흡연 빈도",
+                text = stringResource(R.string.chart_freq_title),
                 style = AppTextStyles.smallTextRegular.copy(color = AppColors.Gray)
             )
             
@@ -101,13 +103,13 @@ fun DailySmokingTimeChart(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(modifier = Modifier.size(10.dp).background(AppColors.Black20, CircleShape))
                 Spacer(modifier = Modifier.size(4.dp))
-                Text(text = "적음", style = AppTextStyles.smallTextRegular.copy(color = AppColors.Gray))
+                Text(text = stringResource(R.string.chart_freq_low), style = AppTextStyles.smallTextRegular.copy(color = AppColors.Gray))
                 
                 Spacer(modifier = Modifier.size(12.dp))
                 
                 Box(modifier = Modifier.size(10.dp).background(AppColors.PrimaryColor, CircleShape))
                 Spacer(modifier = Modifier.size(4.dp))
-                Text(text = "많음", style = AppTextStyles.smallTextRegular.copy(color = AppColors.Gray))
+                Text(text = stringResource(R.string.chart_freq_high), style = AppTextStyles.smallTextRegular.copy(color = AppColors.Gray))
             }
         }
     }

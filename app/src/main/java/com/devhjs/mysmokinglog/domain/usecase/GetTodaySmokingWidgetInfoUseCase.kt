@@ -1,6 +1,6 @@
 package com.devhjs.mysmokinglog.domain.usecase
 
-import com.devhjs.mysmokinglog.core.util.formatTimeAgo
+
 import com.devhjs.mysmokinglog.domain.model.TodaySmoking
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
@@ -27,9 +27,7 @@ class GetTodaySmokingWidgetInfoUseCase(
         return TodaySmoking(
             count = events.size,
             dailyLimit = dailyLimit,
-            lastSmokingTime = lastEvent?.let {
-                formatTimeAgo(it.timestamp, clock)
-            } ?: ""
+            lastSmokingTimestamp = lastEvent?.timestamp
         )
     }
 }

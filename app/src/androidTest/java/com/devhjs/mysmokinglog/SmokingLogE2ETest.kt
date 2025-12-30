@@ -8,6 +8,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import com.devhjs.mysmokinglog.R
 
 @HiltAndroidTest
 class SmokingLogE2ETest {
@@ -28,10 +29,10 @@ class SmokingLogE2ETest {
         // 1. 초기 상태 확인
         // "0" 개비
         composeTestRule.onNodeWithText("0").assertIsDisplayed()
-        composeTestRule.onNodeWithText("개비").assertIsDisplayed()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.home_curr_cig_unit)).assertIsDisplayed()
 
         // 2. Add Smoking (+ 한 개비)
-        composeTestRule.onNodeWithText("+ 한 개비").apply {
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.home_add_cig_button)).apply {
             assertIsDisplayed()
             assertHasClickAction()
             performClick()
@@ -41,7 +42,7 @@ class SmokingLogE2ETest {
         composeTestRule.waitForIdle()
         composeTestRule.onNodeWithText("1").assertIsDisplayed()
         
-        composeTestRule.onNodeWithText("되돌리기").apply {
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.home_undo_button)).apply {
             assertIsDisplayed()
             assertHasClickAction()
             performClick() // Undo Click
@@ -55,7 +56,7 @@ class SmokingLogE2ETest {
     @Test
     fun settings_changeDailyLimit_updatesHome() {
         // 1. Navigate to Settings
-        composeTestRule.onNodeWithContentDescription("설정").performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.nav_setting)).performClick()
         
         // 2. Change Settings
         // Click Preset 5000 (Expected text: ₩5,000 for Locale.KOREA)
@@ -63,15 +64,15 @@ class SmokingLogE2ETest {
         // Let's rely on finding "5,000" substring text if exact match fails, or use localized formatter in test.
         // But for simplicity, let's verify key elements.
         
-        composeTestRule.onNodeWithText("비용 기준").assertIsDisplayed()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.settings_cost_title)).assertIsDisplayed()
         
         // Verify we are on Settings screen
-        composeTestRule.onNodeWithText("하루 목표").assertIsDisplayed()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.settings_daily_goal_title)).assertIsDisplayed()
 
         // 3. Go back to Home
-        composeTestRule.onNodeWithContentDescription("홈").performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.nav_home)).performClick()
         
         // 4. Verify Home
-        composeTestRule.onNodeWithText("개비").assertIsDisplayed()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.home_curr_cig_unit)).assertIsDisplayed()
     }
 }

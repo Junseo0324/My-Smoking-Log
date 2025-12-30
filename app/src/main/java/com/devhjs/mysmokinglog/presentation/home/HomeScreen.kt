@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,6 +36,7 @@ import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.presentation.component.HomeButton
 import com.devhjs.mysmokinglog.ui.AppColors
 import com.devhjs.mysmokinglog.ui.AppTextStyles
+import com.devhjs.mysmokinglog.presentation.util.getFormattedTimeAgo
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -71,13 +73,13 @@ fun HomeScreen(
                 style = AppTextStyles.titleTextBold.copy(color = statusColor),
             )
             Text(
-                text = "개비",
+                text = stringResource(R.string.home_curr_cig_unit),
                 style = AppTextStyles.normalTextRegular.copy(color = AppColors.White),
             )
         }
         Spacer(modifier = Modifier.height(15.dp))
         Text(
-            text = "하루 상한선 : ${state.dailyLimit}개비",
+            text = stringResource(R.string.home_daily_limit_format, state.dailyLimit),
             style = AppTextStyles.normalTextRegular.copy(color = AppColors.White),
         )
         Spacer(modifier = Modifier.height(30.dp))
@@ -123,7 +125,7 @@ fun HomeScreen(
                         modifier = Modifier.size(20.dp),
                         tint = AppColors.White,
                         painter = painterResource(R.drawable.clock),
-                        contentDescription = "시계"
+                        contentDescription = stringResource(R.string.home_clock_cd)
                     )
                 }
                 Spacer(modifier = Modifier.width(10.dp))
@@ -132,12 +134,12 @@ fun HomeScreen(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "마지막으로 핀 지",
+                        text = stringResource(R.string.home_last_smoked_label),
                         style = AppTextStyles.normalTextRegular.copy(color = AppColors.White),
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     Text(
-                        text = state.lastSmokingTime,
+                        text = getFormattedTimeAgo(state.lastSmokingTimestamp),
                         style = AppTextStyles.largeTextBold.copy(fontSize = 18.sp, color = AppColors.White),
                     )
                 }
@@ -147,7 +149,7 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(30.dp))
 
         HomeButton(
-            title = "+ 한 개비",
+            title = stringResource(R.string.home_add_cig_button),
             backgroundColor = AppColors.White,
             textColor = AppColors.Black
         ) {
@@ -161,7 +163,7 @@ fun HomeScreen(
             exit = fadeOut()
         ) {
             HomeButton(
-                title = "되돌리기",
+                title = stringResource(R.string.home_undo_button),
                 backgroundColor = AppColors.Black30,
                 textColor = AppColors.White
             ) {
@@ -178,7 +180,7 @@ private fun HomeScreenPreview() {
         state = HomeState(
             todayCount = 10,
             dailyLimit = 20,
-            lastSmokingTime = "1시간 전"
+            lastSmokingTimestamp = System.currentTimeMillis() - 3600000,
         )
     )
 }

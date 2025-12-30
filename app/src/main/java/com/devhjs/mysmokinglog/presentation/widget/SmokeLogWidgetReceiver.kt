@@ -35,7 +35,7 @@ class SmokeLogWidgetReceiver : GlanceAppWidgetReceiver() {
                 ) { prefs ->
                     prefs.toMutablePreferences().apply {
                          this[SmokeLogWidget.countKey] = state.count
-                         this[SmokeLogWidget.lastTimeKey] = state.lastSmokingTime
+                         this[SmokeLogWidget.lastTimestampKey] = state.lastSmokingTimestamp ?: 0L
                     }
                 }
                 glanceAppWidget.update(context, glanceId)

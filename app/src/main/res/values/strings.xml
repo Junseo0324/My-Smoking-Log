@@ -1,3 +1,72 @@
 <resources>
     <string name="app_name">Smoke Log</string>
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_stat">Stats</string>
+    <string name="nav_setting">Settings</string>
+
+    <!-- Home -->
+    <string name="home_daily_limit_format">Daily Limit: %d cigs</string>
+    <string name="home_last_smoked_label">Last smoked</string>
+    <string name="home_add_cig_button">+ One Cig</string>
+    <string name="home_undo_button">Undo</string>
+    <string name="home_clock_cd">Clock</string>
+    <string name="unit_cig">cigs</string>
+    <string name="home_curr_cig_unit">cigs</string>
+
+    <!-- Stat -->
+    <string name="stat_title">Stats</string>
+    <string name="stat_streak_title">Days Smoked</string>
+    <string name="stat_streak_desc">days straight</string>
+    <string name="stat_avg_interval_title">Avg Interval</string>
+    <string name="stat_avg_interval_desc">min</string>
+    <string name="stat_longest_break_title">Longest Break</string>
+    <string name="stat_longest_break_desc">Longest time without smoking</string>
+    <string name="stat_cost_title">Cost</string>
+    <string name="stat_cost_desc_format">Total %1$d cigs (%2$d packs)</string>
+
+    <!-- Time Formatting -->
+    <string name="time_just_now">Just now</string>
+    <string name="time_fmt_mins_ago">%d mins ago</string>
+    <string name="time_fmt_hours_ago">%d hours ago</string>
+    <string name="time_fmt_days_ago">%d days ago</string>
+    <string name="duration_fmt_days_hours">%1$d d %2$d h</string>
+    <string name="duration_fmt_days">%d d</string>
+    <string name="duration_fmt_hours">%d h</string>
+    <string name="duration_none">-</string>
+
+    <!-- Charts -->
+    <string name="chart_daily_title">Daily Smoking Times</string>
+    <string name="chart_daily_desc">* Visualize when you smoke to help avoid triggers.</string>
+    <string name="chart_weekly_title">Weekly Smoking Pattern</string>
+    <string name="chart_weekly_desc">* Track your weekly patterns to see your progress.</string>
+    <string name="chart_time_format">%dh</string>
+    <string name="chart_freq_title">Frequency by Time</string>
+    <string name="chart_freq_low">Low</string>
+    <string name="chart_freq_high">High</string>
+    
+    <string name="day_mon">Mon</string>
+    <string name="day_tue">Tue</string>
+    <string name="day_wed">Wed</string>
+    <string name="day_thu">Thu</string>
+    <string name="day_fri">Fri</string>
+    <string name="day_sat">Sat</string>
+    <string name="day_sun">Sun</string>
+    <string name="count_suffix"> </string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_subtitle">Configure your smoking goals</string>
+    <string name="settings_daily_goal_title">Daily Goal</string>
+    <string name="settings_daily_goal_subtitle">Target daily limit</string>
+    <string name="settings_unit_1">1 cig</string>
+    <string name="settings_unit_100">100 cigs</string>
+    <string name="settings_cost_title">Cost Basis</string>
+    <string name="settings_cost_subtitle">Price per pack</string>
+    <string name="settings_note_title">Note</string>
+    <string name="settings_note_daily_goal">Daily goal is for reference only</string>
+    <string name="settings_note_health">Smoking is harmful to health</string>
+    <string name="settings_note_autosave">Settings save automatically</string>
+    <string name="settings_app_name">Smoke Log</string>
+    <string name="settings_version_prefix">v</string>
 </resources>

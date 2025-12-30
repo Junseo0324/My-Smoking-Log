@@ -23,7 +23,13 @@ import com.devhjs.mysmokinglog.presentation.component.SmokingLogCard
 import com.devhjs.mysmokinglog.presentation.component.StatCardHeader
 import com.devhjs.mysmokinglog.presentation.component.WeeklyBarChart
 import com.devhjs.mysmokinglog.ui.AppColors
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.ui.AppTextStyles
+import com.devhjs.mysmokinglog.presentation.util.TimeFormatter
+import com.devhjs.mysmokinglog.presentation.util.getFormattedCurrency
+import androidx.compose.ui.platform.LocalContext
 
 
 @Composable
@@ -31,6 +37,7 @@ fun StatScreen(
     modifier: Modifier = Modifier,
     state: StatState = StatState()
 ) {
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -41,7 +48,7 @@ fun StatScreen(
     ) {
         Spacer(modifier = Modifier.height(30.dp))
         Text(
-            text = "통계",
+            text = stringResource(R.string.stat_title),
             style = AppTextStyles.titleTextBold.copy(fontSize = 24.sp, color = AppColors.White)
         )
         Spacer(modifier = Modifier.height(30.dp))
@@ -53,9 +60,9 @@ fun StatScreen(
                 modifier = modifier.weight(1f)
             ) {
                 StatCardHeader(
-                    title = "흡연 지속 일수",
+                    title = stringResource(R.string.stat_streak_title),
                     state = "${state.streak}",
-                    description = "일 연속"
+                    description = stringResource(R.string.stat_streak_desc)
                 )
             }
             Spacer(modifier = Modifier.width(20.dp))
@@ -63,9 +70,9 @@ fun StatScreen(
                 modifier = modifier.weight(1f)
             ) {
                 StatCardHeader(
-                    title = "평균 흡연 간격",
-                    state = state.averageSmokingInterval,
-                    description = "분"
+                    title = stringResource(R.string.stat_avg_interval_title),
+                    state = TimeFormatter.formatAverageInterval(context, state.averageSmokingInterval),
+                    description = stringResource(R.string.stat_avg_interval_desc)
                 )
             }
         }
@@ -74,17 +81,17 @@ fun StatScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             StatCardHeader(
-                title = "최장 미흡연",
-                state = state.longestStreak,
-                description = "몸이 쉬고 있었던 가장 긴 시간이에요"
+                title = stringResource(R.string.stat_longest_break_title),
+                state = TimeFormatter.formatDuration(context, state.longestStreak),
+                description = stringResource(R.string.stat_longest_break_desc)
             )
         }
         Spacer(modifier = Modifier.height(20.dp))
         SmokingLogCard {
             StatCardHeader(
-                title = "줄일 수 있었던 지출",
-                state = "₩ ${state.thisMonthCost}",
-                description = "총 ${state.cigarettesTotalCount} 개비 (${state.packCount} 갑)"
+                title = stringResource(R.string.stat_cost_title),
+                state = getFormattedCurrency(state.thisMonthCost),
+                description = stringResource(R.string.stat_cost_desc_format, state.cigarettesTotalCount, state.packCount)
             )
         }
         Spacer(modifier = Modifier.height(20.dp))
@@ -113,10 +120,11 @@ fun StatScreen(
 private fun StatScreenPreview() {
     StatScreen(
         state = StatState(
+
             streak = 10,
-            averageSmokingInterval = "90",
-            longestStreak = "15시간",
-            thisMonthCost = "100,000",
+            averageSmokingInterval = 90,
+            longestStreak = 15,
+            thisMonthCost = 100000,
             cigarettesTotalCount = 100,
             packCount = 10,
             weeklyCigarettes = listOf(1, 2, 3, 4, 5, 6, 7),
