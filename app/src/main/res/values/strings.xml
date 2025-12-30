@@ -61,6 +61,7 @@
     <string name="settings_daily_goal_subtitle">Target daily limit</string>
     <string name="settings_unit_1">1 cig</string>
     <string name="settings_unit_100">100 cigs</string>
+    <string name="settings_cost_input_hint">You can also enter the price directly.</string>
     <string name="settings_cost_title">Cost Basis</string>
     <string name="settings_cost_subtitle">Price per pack</string>
     <string name="settings_note_title">Note</string>

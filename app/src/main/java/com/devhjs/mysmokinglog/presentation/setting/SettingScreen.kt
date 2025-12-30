@@ -137,7 +137,12 @@ fun SettingScreen(
                     iconTint = AppColors.ThirdColor
                 )
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(10.dp))
+                Text(
+                    text = stringResource(R.string.settings_cost_input_hint),
+                    style = AppTextStyles.smallTextRegular.copy(color = AppColors.Gray, fontSize = 12.sp)
+                )
+                Spacer(modifier = Modifier.height(10.dp))
 
                 Box(
                     modifier = Modifier

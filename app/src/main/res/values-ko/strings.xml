@@ -61,6 +61,7 @@
     <string name="settings_daily_goal_subtitle">줄이기 위한 기준 개비 수</string>
     <string name="settings_unit_1">1개비</string>
     <string name="settings_unit_100">100개비</string>
+    <string name="settings_cost_input_hint">직접 가격을 입력할 수도 있어요.</string>
     <string name="settings_cost_title">비용 기준</string>
     <string name="settings_cost_subtitle">비용 계산을 위한 기준 가격</string>
     <string name="settings_note_title">알아두세요</string>
