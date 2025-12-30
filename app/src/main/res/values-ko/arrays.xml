@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="price_presets">
+        <item>4500</item>
+        <item>5000</item>
+        <item>5500</item>
+    </integer-array>
+</resources>

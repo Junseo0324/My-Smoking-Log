@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -47,6 +48,9 @@ fun SettingScreen(
     state: SettingsState = SettingsState(),
     onAction: (SettingsAction) -> Unit = {},
 ) {
+    val context = LocalContext.current
+    val pricePresets = context.resources.getIntArray(R.array.price_presets)
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -182,24 +186,14 @@ fun SettingScreen(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    PricePresetButton(
-                        price = 4500,
-                        isSelected = state.packPrice == 4500,
-                        onClick = { onAction(SettingsAction.ChangePackPrice(4500)) },
-                        modifier = Modifier.weight(1f)
-                    )
-                    PricePresetButton(
-                        price = 5000,
-                        isSelected = state.packPrice == 5000,
-                        onClick = { onAction(SettingsAction.ChangePackPrice(5000)) },
-                        modifier = Modifier.weight(1f)
-                    )
-                    PricePresetButton(
-                        price = 5500,
-                        isSelected = state.packPrice == 5500,
-                        onClick = { onAction(SettingsAction.ChangePackPrice(5500)) },
-                        modifier = Modifier.weight(1f)
-                    )
+                    pricePresets.forEach { price ->
+                        PricePresetButton(
+                            price = price,
+                            isSelected = state.packPrice == price,
+                            onClick = { onAction(SettingsAction.ChangePackPrice(price)) },
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
                 }
             }
         }

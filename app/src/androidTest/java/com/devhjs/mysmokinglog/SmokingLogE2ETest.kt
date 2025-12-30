@@ -56,7 +56,7 @@ class SmokingLogE2ETest {
     @Test
     fun settings_changeDailyLimit_updatesHome() {
         // 1. Navigate to Settings
-        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.nav_setting)).performClick()
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.nav_setting)).performClick()
         
         // 2. Change Settings
         // Click Preset 5000 (Expected text: ₩5,000 for Locale.KOREA)
@@ -70,7 +70,7 @@ class SmokingLogE2ETest {
         composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.settings_daily_goal_title)).assertIsDisplayed()
 
         // 3. Go back to Home
-        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.nav_home)).performClick()
+        composeTestRule.onNodeWithContentDescription(composeTestRule.activity.getString(R.string.nav_home)).performClick()
         
         // 4. Verify Home
         composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.home_curr_cig_unit)).assertIsDisplayed()
