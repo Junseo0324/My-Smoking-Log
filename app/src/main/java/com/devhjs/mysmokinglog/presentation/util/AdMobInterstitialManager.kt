@@ -2,7 +2,6 @@ package com.devhjs.mysmokinglog.presentation.util
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import com.devhjs.mysmokinglog.BuildConfig
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -18,7 +17,7 @@ class AdMobInterstitialManager @Inject constructor(
 ) {
     private var interstitialAd: InterstitialAd? = null
     private var visitCount = 0
-    private val threshold = 2 // 2번 방문마다 광고 표시
+    private val threshold = 3 // 3번 방문마다 광고 표시
 
     fun loadAd() {
         val adRequest = AdRequest.Builder().build()
