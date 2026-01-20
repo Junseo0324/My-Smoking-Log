@@ -22,7 +22,7 @@ class GetStatUseCase @Inject constructor(
     private val smokingRepository: SmokingRepository,
     private val userSettingRepository: UserSettingRepository
 ) {
-    suspend fun execute(): Flow<StatState> {
+    fun execute(): Flow<StatState> {
         val today = LocalDate.now()
         
         // 1. 가져올 데이터의 날짜 범위 설정 (과거 1년 ~ 내일)
@@ -115,7 +115,6 @@ class GetStatUseCase @Inject constructor(
                 0
             }
 
-            // E. 평균 흡연 간격
             // E. 평균 흡연 간격
             val averageInterval = if (allEvents.size >= 2) {
                 val firstTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents.first().timestamp), ZoneId.systemDefault())
