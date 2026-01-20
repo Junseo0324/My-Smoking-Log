@@ -38,7 +38,7 @@ import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.presentation.component.HomeButton
 import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
 import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
-import com.devhjs.mysmokinglog.presentation.util.getFormattedTimeAgo
+import com.devhjs.mysmokinglog.presentation.util.TimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalLayoutApi::class)
@@ -142,7 +142,9 @@ fun HomeScreen(
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     Text(
-                        text = getFormattedTimeAgo(state.lastSmokingTimestamp),
+                        text = state.lastSmokingTimestamp?.let {
+                            TimeFormatter.formatTimeAgo(it).asString()
+                        } ?: "",
                         style = AppTextStyles.largeTextBold.copy(fontSize = 18.sp, color = AppColors.White),
                     )
                 }
