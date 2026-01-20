@@ -20,7 +20,7 @@ class GetTodaySmokingInfoUseCase @Inject constructor(
     private val userSettingRepository: UserSettingRepository,
     private val clock: Clock
 ) {
-    suspend fun execute(): Flow<Result<TodaySmoking, Throwable>> {
+    fun execute(): Flow<Result<TodaySmoking, Throwable>> {
         val today = LocalDate.now(clock).toString()
         
         return combine(

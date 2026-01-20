@@ -2,9 +2,9 @@ package com.devhjs.mysmokinglog.core.di
 
 import android.content.Context
 import androidx.room.Room
-import com.devhjs.mysmokinglog.data.AppDatabase
-import com.devhjs.mysmokinglog.data.dao.SmokingDao
-import com.devhjs.mysmokinglog.data.dao.UserSettingsDao
+import com.devhjs.mysmokinglog.data.local.AppDatabase
+import com.devhjs.mysmokinglog.data.local.dao.SmokingDao
+import com.devhjs.mysmokinglog.data.local.dao.UserSettingsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

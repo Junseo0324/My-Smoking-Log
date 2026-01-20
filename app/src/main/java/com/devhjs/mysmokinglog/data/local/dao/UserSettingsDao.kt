@@ -1,10 +1,10 @@
-package com.devhjs.mysmokinglog.data.dao
+package com.devhjs.mysmokinglog.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.devhjs.mysmokinglog.data.entity.UserSettingEntity
+import com.devhjs.mysmokinglog.data.local.entity.UserSettingEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

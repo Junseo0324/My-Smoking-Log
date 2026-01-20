@@ -1,6 +1,6 @@
 package com.devhjs.mysmokinglog.data.repository
 
-import com.devhjs.mysmokinglog.data.dao.UserSettingsDao
+import com.devhjs.mysmokinglog.data.local.dao.UserSettingsDao
 import com.devhjs.mysmokinglog.data.mapper.toEntity
 import com.devhjs.mysmokinglog.data.mapper.toModel
 import com.devhjs.mysmokinglog.domain.model.UserSetting

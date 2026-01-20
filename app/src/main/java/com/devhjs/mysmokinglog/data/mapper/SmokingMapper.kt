@@ -1,6 +1,6 @@
 package com.devhjs.mysmokinglog.data.mapper
 
-import com.devhjs.mysmokinglog.data.entity.SmokingEntity
+import com.devhjs.mysmokinglog.data.local.entity.SmokingEntity
 import com.devhjs.mysmokinglog.domain.model.Smoking
 
 fun Smoking.toEntity(): SmokingEntity {

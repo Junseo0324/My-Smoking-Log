@@ -1,13 +1,13 @@
-package com.devhjs.mysmokinglog.data
+package com.devhjs.mysmokinglog.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.devhjs.mysmokinglog.data.dao.SmokingDao
-import com.devhjs.mysmokinglog.data.dao.UserSettingsDao
-import com.devhjs.mysmokinglog.data.entity.SmokingEntity
-import com.devhjs.mysmokinglog.data.entity.UserSettingEntity
+import com.devhjs.mysmokinglog.data.local.dao.SmokingDao
+import com.devhjs.mysmokinglog.data.local.dao.UserSettingsDao
+import com.devhjs.mysmokinglog.data.local.entity.SmokingEntity
+import com.devhjs.mysmokinglog.data.local.entity.UserSettingEntity
 
 @Database(
     entities = [

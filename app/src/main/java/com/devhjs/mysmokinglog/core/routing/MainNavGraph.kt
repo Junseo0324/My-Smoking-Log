@@ -1,5 +1,7 @@
 package com.devhjs.mysmokinglog.core.routing
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -9,6 +11,7 @@ import com.devhjs.mysmokinglog.presentation.home.HomeScreenRoot
 import com.devhjs.mysmokinglog.presentation.setting.SettingScreenRoot
 import com.devhjs.mysmokinglog.presentation.stat.StatScreenRoot
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainNavGraph(
     navController: NavHostController,

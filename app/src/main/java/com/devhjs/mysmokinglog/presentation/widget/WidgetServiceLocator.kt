@@ -1,7 +1,7 @@
 package com.devhjs.mysmokinglog.presentation.widget
 
 import android.content.Context
-import com.devhjs.mysmokinglog.data.AppDatabase
+import com.devhjs.mysmokinglog.data.local.AppDatabase
 import com.devhjs.mysmokinglog.data.repository.SmokingRepositoryImpl
 import com.devhjs.mysmokinglog.data.repository.UserSettingRepositoryImpl
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository

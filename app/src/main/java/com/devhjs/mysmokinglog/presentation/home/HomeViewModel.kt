@@ -77,7 +77,6 @@ class HomeViewModel @Inject constructor(
 
                     is Result.Error -> {
                         _state.update { it.copy(isLoading = false) }
-                        //
                     }
                 }
             }
@@ -101,7 +100,7 @@ class HomeViewModel @Inject constructor(
             if (result is Result.Success) {
                 showUndoTemporarily()
             } else {
-                //
+
             }
         }
     }

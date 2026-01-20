@@ -1,4 +1,4 @@
-package com.devhjs.mysmokinglog.data.entity
+package com.devhjs.mysmokinglog.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

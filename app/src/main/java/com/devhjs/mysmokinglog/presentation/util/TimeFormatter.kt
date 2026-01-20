@@ -66,6 +66,7 @@ fun getFormattedTimeAgo(timestamp: Long?): String {
     return TimeFormatter.formatTimeAgo(context, timestamp)
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getFormattedCurrency(amount: Int): String {
     return TimeFormatter.formatCurrency(amount)

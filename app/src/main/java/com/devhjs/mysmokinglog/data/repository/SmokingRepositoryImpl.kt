@@ -1,6 +1,6 @@
 package com.devhjs.mysmokinglog.data.repository
 
-import com.devhjs.mysmokinglog.data.dao.SmokingDao
+import com.devhjs.mysmokinglog.data.local.dao.SmokingDao
 import com.devhjs.mysmokinglog.data.mapper.toEntity
 import com.devhjs.mysmokinglog.data.mapper.toModel
 import com.devhjs.mysmokinglog.domain.model.Smoking

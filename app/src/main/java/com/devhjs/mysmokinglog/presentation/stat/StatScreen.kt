@@ -1,5 +1,7 @@
 package com.devhjs.mysmokinglog.presentation.stat
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,9 +30,12 @@ import com.devhjs.mysmokinglog.presentation.component.WeeklyBarChart
 import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
 import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
 import com.devhjs.mysmokinglog.presentation.util.TimeFormatter
+import com.devhjs.mysmokinglog.presentation.util.TimeFormatter.formatAverageInterval
+import com.devhjs.mysmokinglog.presentation.util.TimeFormatter.formatDuration
 import com.devhjs.mysmokinglog.presentation.util.getFormattedCurrency
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun StatScreen(
     modifier: Modifier = Modifier,
@@ -70,7 +75,7 @@ fun StatScreen(
             ) {
                 StatCardHeader(
                     title = stringResource(R.string.stat_avg_interval_title),
-                    state = TimeFormatter.formatAverageInterval(context, state.averageSmokingInterval),
+                    state = formatAverageInterval(context, state.averageSmokingInterval),
                     description = stringResource(R.string.stat_avg_interval_desc)
                 )
             }
@@ -81,7 +86,7 @@ fun StatScreen(
         ) {
             StatCardHeader(
                 title = stringResource(R.string.stat_longest_break_title),
-                state = TimeFormatter.formatDuration(context, state.longestStreak),
+                state = formatDuration(context, state.longestStreak),
                 description = stringResource(R.string.stat_longest_break_desc)
             )
         }
@@ -114,6 +119,7 @@ fun StatScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 private fun StatScreenPreview() {

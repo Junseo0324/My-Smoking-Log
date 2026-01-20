@@ -1,7 +1,7 @@
 package com.devhjs.mysmokinglog.data.repository
 
-import com.devhjs.mysmokinglog.data.dao.UserSettingsDao
-import com.devhjs.mysmokinglog.data.entity.UserSettingEntity
+import com.devhjs.mysmokinglog.data.local.dao.UserSettingsDao
+import com.devhjs.mysmokinglog.data.local.entity.UserSettingEntity
 import com.devhjs.mysmokinglog.domain.model.UserSetting
 import io.mockk.Runs
 import io.mockk.coEvery
