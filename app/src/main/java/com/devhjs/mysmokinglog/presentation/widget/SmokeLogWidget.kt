@@ -27,7 +27,7 @@ class SmokeLogWidget : GlanceAppWidget() {
             val lastTimestamp = prefs[lastTimestampKey] ?: 0L
             
             val lastTime = if (lastTimestamp > 0) {
-                 TimeFormatter.formatTimeAgo(lastTimestamp).asString()
+                 TimeFormatter.formatTimeAgo(lastTimestamp).asString(context)
             } else {
                  "-" 
             }
