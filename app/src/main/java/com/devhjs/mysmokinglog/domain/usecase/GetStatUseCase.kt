@@ -2,12 +2,11 @@ package com.devhjs.mysmokinglog.domain.usecase
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.devhjs.mysmokinglog.domain.model.StatInfo
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
-import com.devhjs.mysmokinglog.presentation.stat.StatState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-
 import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate
@@ -22,7 +21,7 @@ class GetStatUseCase @Inject constructor(
     private val smokingRepository: SmokingRepository,
     private val userSettingRepository: UserSettingRepository
 ) {
-    fun execute(): Flow<StatState> {
+    fun execute(): Flow<StatInfo> {
         val today = LocalDate.now()
         
         // 1. 가져올 데이터의 날짜 범위 설정 (과거 1년 ~ 내일)
@@ -126,7 +125,7 @@ class GetStatUseCase @Inject constructor(
             }
 
             // 최종 상태 객체 생성 및 방출
-            StatState(
+            StatInfo(
                 streak = currentStreakDays,
                 averageSmokingInterval = averageInterval,
                 longestStreak = maxGapHours,

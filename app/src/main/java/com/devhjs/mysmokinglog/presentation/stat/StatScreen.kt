@@ -17,7 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,10 +28,6 @@ import com.devhjs.mysmokinglog.presentation.component.StatCardHeader
 import com.devhjs.mysmokinglog.presentation.component.WeeklyBarChart
 import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
 import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
-import com.devhjs.mysmokinglog.presentation.util.TimeFormatter
-import com.devhjs.mysmokinglog.presentation.util.TimeFormatter.formatAverageInterval
-import com.devhjs.mysmokinglog.presentation.util.TimeFormatter.formatDuration
-import com.devhjs.mysmokinglog.presentation.util.getFormattedCurrency
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -41,8 +36,6 @@ fun StatScreen(
     modifier: Modifier = Modifier,
     state: StatState = StatState()
 ) {
-    val context = LocalContext.current
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -65,7 +58,7 @@ fun StatScreen(
             ) {
                 StatCardHeader(
                     title = stringResource(R.string.stat_streak_title),
-                    state = "${state.streak}",
+                    state = state.streak.asString(),
                     description = stringResource(R.string.stat_streak_desc)
                 )
             }
@@ -75,7 +68,7 @@ fun StatScreen(
             ) {
                 StatCardHeader(
                     title = stringResource(R.string.stat_avg_interval_title),
-                    state = formatAverageInterval(context, state.averageSmokingInterval),
+                    state = state.averageSmokingInterval.asString(),
                     description = stringResource(R.string.stat_avg_interval_desc)
                 )
             }
@@ -86,7 +79,7 @@ fun StatScreen(
         ) {
             StatCardHeader(
                 title = stringResource(R.string.stat_longest_break_title),
-                state = formatDuration(context, state.longestStreak),
+                state = state.longestStreak.asString(),
                 description = stringResource(R.string.stat_longest_break_desc)
             )
         }
@@ -94,7 +87,7 @@ fun StatScreen(
         SmokingLogCard {
             StatCardHeader(
                 title = stringResource(R.string.stat_cost_title),
-                state = getFormattedCurrency(state.thisMonthCost),
+                state = state.thisMonthCost.asString(),
                 description = stringResource(R.string.stat_cost_desc_format, state.cigarettesTotalCount, state.packCount)
             )
         }
@@ -123,20 +116,5 @@ fun StatScreen(
 @Preview(showBackground = true)
 @Composable
 private fun StatScreenPreview() {
-    StatScreen(
-        state = StatState(
-
-            streak = 10,
-            averageSmokingInterval = 90,
-            longestStreak = 15,
-            thisMonthCost = 100000,
-            cigarettesTotalCount = 100,
-            packCount = 10,
-            weeklyCigarettes = listOf(1, 2, 3, 4, 5, 6, 7),
-            todayTime = listOf(
-                1, 2, 3, 4, 0, 6, 7
-            )
-
-        )
-    )
+    StatScreen()
 }
