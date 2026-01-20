@@ -1,4 +1,4 @@
-package com.devhjs.mysmokinglog.ui
+package com.devhjs.mysmokinglog.presentation.designsystem
 
 import androidx.compose.ui.graphics.Color
 

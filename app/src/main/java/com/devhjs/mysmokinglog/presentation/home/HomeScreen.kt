@@ -34,8 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.presentation.component.HomeButton
-import com.devhjs.mysmokinglog.ui.AppColors
-import com.devhjs.mysmokinglog.ui.AppTextStyles
+import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
+import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
 import com.devhjs.mysmokinglog.presentation.util.getFormattedTimeAgo
 
 @OptIn(ExperimentalLayoutApi::class)

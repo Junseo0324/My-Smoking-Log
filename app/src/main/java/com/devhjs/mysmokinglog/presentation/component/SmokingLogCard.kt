@@ -9,7 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.devhjs.mysmokinglog.ui.AppColors
+import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
 
 @Composable
 fun SmokingLogCard(

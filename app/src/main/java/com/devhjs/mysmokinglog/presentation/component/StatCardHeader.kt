@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.devhjs.mysmokinglog.ui.AppColors
-import com.devhjs.mysmokinglog.ui.AppTextStyles
+import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
+import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
 
 @Composable
 fun StatCardHeader(

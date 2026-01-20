@@ -14,7 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.devhjs.mysmokinglog.ui.AppTextStyles
+import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
 
 @Composable
 fun HomeButton(

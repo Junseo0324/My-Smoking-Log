@@ -22,8 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.res.stringResource
 import com.devhjs.mysmokinglog.R
-import com.devhjs.mysmokinglog.ui.AppColors
-import com.devhjs.mysmokinglog.ui.AppTextStyles
+import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
+import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
 
 @Composable
 fun DailySmokingTimeChart(

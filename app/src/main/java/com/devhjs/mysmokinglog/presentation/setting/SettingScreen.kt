@@ -39,8 +39,8 @@ import com.devhjs.mysmokinglog.presentation.component.InfoItem
 import com.devhjs.mysmokinglog.presentation.component.PricePresetButton
 import com.devhjs.mysmokinglog.presentation.component.SettingsCardHeader
 import com.devhjs.mysmokinglog.presentation.component.SmokingLogCard
-import com.devhjs.mysmokinglog.ui.AppColors
-import com.devhjs.mysmokinglog.ui.AppTextStyles
+import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
+import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
 
 @Composable
 fun SettingScreen(

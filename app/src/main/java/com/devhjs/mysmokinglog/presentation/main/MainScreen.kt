@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.devhjs.mysmokinglog.presentation.component.AdMobBanner
 import com.devhjs.mysmokinglog.presentation.component.BottomNavigationBar
-import com.devhjs.mysmokinglog.ui.AppColors
+import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
 
 @Composable
 fun MainScreen(

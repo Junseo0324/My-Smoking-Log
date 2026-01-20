@@ -1,4 +1,4 @@
-package com.devhjs.mysmokinglog.ui
+package com.devhjs.mysmokinglog.presentation.designsystem
 
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -23,12 +23,6 @@ object AppTextStyles {
         fontSize = 20.sp,
         lineHeight = 30.sp
     )
-    val mediumTextBold = TextStyle(
-        fontFamily = AppFonts.Pretendard,
-        fontWeight = FontWeight.Bold,
-        fontSize = 20.sp,
-        lineHeight = 30.sp
-    )
     val normalTextBold = TextStyle(
         fontFamily = AppFonts.Pretendard,
         fontWeight = FontWeight.Bold,
@@ -41,36 +35,6 @@ object AppTextStyles {
         fontSize = 14.sp,
         lineHeight = 21.sp
     )
-    val smallerTextBold = TextStyle(
-        fontFamily = AppFonts.Pretendard,
-        fontWeight = FontWeight.Bold,
-        fontSize = 11.sp,
-        lineHeight = 17.sp
-    )
-    val titleTextRegular = TextStyle(
-        fontFamily = AppFonts.Pretendard,
-        fontWeight = FontWeight.Normal,
-        fontSize = 50.sp,
-        lineHeight = 75.sp
-    )
-    val headerTextRegular = TextStyle(
-        fontFamily = AppFonts.Pretendard,
-        fontWeight = FontWeight.Normal,
-        fontSize = 30.sp,
-        lineHeight = 45.sp
-    )
-    val largeTextRegular = TextStyle(
-        fontFamily = AppFonts.Pretendard,
-        fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
-        lineHeight = 30.sp
-    )
-    val mediumTextRegular = TextStyle(
-        fontFamily = AppFonts.Pretendard,
-        fontWeight = FontWeight.Normal,
-        fontSize = 18.sp,
-        lineHeight = 27.sp
-    )
     val normalTextRegular = TextStyle(
         fontFamily = AppFonts.Pretendard,
         fontWeight = FontWeight.Normal,
@@ -82,11 +46,5 @@ object AppTextStyles {
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 21.sp
-    )
-    val smallerTextRegular = TextStyle(
-        fontFamily = AppFonts.Pretendard,
-        fontWeight = FontWeight.Normal,
-        fontSize = 11.sp,
-        lineHeight = 27.sp
     )
 }

@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.core.routing.BottomNavItem
 import com.devhjs.mysmokinglog.core.routing.MainRoute
-import com.devhjs.mysmokinglog.ui.AppColors
+import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
 
 @Composable
 fun BottomNavigationBar(
