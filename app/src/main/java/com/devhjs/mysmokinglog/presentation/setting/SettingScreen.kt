@@ -1,6 +1,7 @@
 package com.devhjs.mysmokinglog.presentation.setting
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -47,6 +48,7 @@ fun SettingScreen(
     modifier: Modifier = Modifier,
     state: SettingsState = SettingsState(),
     onAction: (SettingsAction) -> Unit = {},
+    onNavigateToLicense: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val pricePresets = context.resources.getIntArray(R.array.price_presets)
@@ -232,7 +234,8 @@ fun SettingScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 30.dp),
+                .padding(bottom = 30.dp)
+                .clickable { onNavigateToLicense() },
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(

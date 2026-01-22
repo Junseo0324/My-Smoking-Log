@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.devhjs.mysmokinglog.presentation.home.HomeScreenRoot
+import com.devhjs.mysmokinglog.presentation.license.LicenseScreen
 import com.devhjs.mysmokinglog.presentation.setting.SettingScreenRoot
 import com.devhjs.mysmokinglog.presentation.stat.StatScreenRoot
 
@@ -29,7 +30,14 @@ fun MainNavGraph(
             StatScreenRoot()
         }
         composable(MainRoute.Setting.route) {
-            SettingScreenRoot()
+            SettingScreenRoot(
+                onNavigateToLicense = {
+                    navController.navigate(MainRoute.License.route)
+                }
+            )
+        }
+        composable(MainRoute.License.route) {
+            LicenseScreen()
         }
 
     }

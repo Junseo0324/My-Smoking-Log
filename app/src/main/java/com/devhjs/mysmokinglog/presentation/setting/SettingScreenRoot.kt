@@ -9,13 +9,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun SettingScreenRoot(
     modifier: Modifier = Modifier,
-    viewModel: SettingsViewModel = hiltViewModel()
+    viewModel: SettingsViewModel = hiltViewModel(),
+    onNavigateToLicense: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
     
     SettingScreen(
         state = state,
         onAction = viewModel::onAction,
+        onNavigateToLicense = onNavigateToLicense,
         modifier = modifier
     )
 }

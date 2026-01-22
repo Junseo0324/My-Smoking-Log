@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.aboutlibraries.plugin)
 }
 
 
@@ -110,5 +111,8 @@ dependencies {
 
     // AdMob
     implementation(libs.play.services.ads)
+
+    // AboutLibraries
+    implementation(libs.aboutlibraries.compose)
     
 }
