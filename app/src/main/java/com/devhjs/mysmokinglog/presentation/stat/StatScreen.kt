@@ -1,7 +1,5 @@
 package com.devhjs.mysmokinglog.presentation.stat
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -32,7 +30,6 @@ import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
 import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
 
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun StatScreen(
     modifier: Modifier = Modifier,
@@ -126,7 +123,6 @@ fun StatScreen(
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 private fun StatScreenPreview() {

@@ -1,7 +1,5 @@
 package com.devhjs.mysmokinglog.domain.usecase
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.devhjs.mysmokinglog.core.util.Result
 import com.devhjs.mysmokinglog.domain.model.Smoking
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
@@ -10,7 +8,6 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 
-@RequiresApi(Build.VERSION_CODES.O)
 class AddSmokingUseCase @Inject constructor(
     private val smokingRepository: SmokingRepository,
     private val clock: Clock

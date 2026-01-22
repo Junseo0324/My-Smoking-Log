@@ -1,7 +1,5 @@
 package com.devhjs.mysmokinglog.presentation.health
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,7 +21,6 @@ import com.devhjs.mysmokinglog.presentation.component.HealthMilestoneItem
 import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
 import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HealthTimelineScreen(
     state: HealthTimelineState = HealthTimelineState(),

@@ -1,7 +1,5 @@
 package com.devhjs.mysmokinglog.presentation.stat
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devhjs.mysmokinglog.core.util.UiText
@@ -19,7 +17,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class StatViewModel @Inject constructor(
     private val getStatUseCase: GetStatUseCase,

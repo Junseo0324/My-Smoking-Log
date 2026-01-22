@@ -1,7 +1,5 @@
 package com.devhjs.mysmokinglog.presentation.home
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devhjs.mysmokinglog.core.util.Result
@@ -22,7 +20,7 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getTodaySmokingInfoUseCase: GetTodaySmokingInfoUseCase,

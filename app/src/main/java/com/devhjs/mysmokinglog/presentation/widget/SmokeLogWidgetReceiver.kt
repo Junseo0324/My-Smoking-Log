@@ -2,8 +2,6 @@ package com.devhjs.mysmokinglog.presentation.widget
 
 import android.appwidget.AppWidgetManager
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.state.updateAppWidgetState
@@ -11,7 +9,7 @@ import androidx.glance.state.PreferencesGlanceStateDefinition
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-@RequiresApi(Build.VERSION_CODES.O)
+
 class SmokeLogWidgetReceiver : GlanceAppWidgetReceiver() {
     override val glanceAppWidget = SmokeLogWidget()
 

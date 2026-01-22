@@ -1,8 +1,5 @@
 package com.devhjs.mysmokinglog.presentation.health
 
-import android.os.Build
-import android.os.CountDownTimer
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
@@ -16,7 +13,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-@RequiresApi(Build.VERSION_CODES.O)
 class HealthTimelineViewModel @Inject constructor(
     private val getHealthRecoveryUseCase: GetHealthRecoveryUseCase,
     private val smokingRepository: SmokingRepository 

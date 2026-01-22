@@ -1,7 +1,5 @@
 package com.devhjs.mysmokinglog.presentation.util
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.core.util.UiText
 import java.text.NumberFormat
@@ -9,7 +7,6 @@ import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.Locale
 
-@RequiresApi(Build.VERSION_CODES.O)
 object TimeFormatter {
 
     fun formatTimeAgo(timestamp: Long): UiText {

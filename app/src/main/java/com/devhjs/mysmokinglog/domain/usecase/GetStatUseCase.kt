@@ -1,7 +1,5 @@
 package com.devhjs.mysmokinglog.domain.usecase
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.devhjs.mysmokinglog.domain.model.StatInfo
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
@@ -16,7 +14,6 @@ import java.time.temporal.ChronoUnit
 import java.time.temporal.TemporalAdjusters
 import javax.inject.Inject
 
-@RequiresApi(Build.VERSION_CODES.O)
 class GetStatUseCase @Inject constructor(
     private val smokingRepository: SmokingRepository,
     private val userSettingRepository: UserSettingRepository

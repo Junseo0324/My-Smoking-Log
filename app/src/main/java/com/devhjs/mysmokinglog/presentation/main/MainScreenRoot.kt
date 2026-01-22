@@ -1,14 +1,11 @@
 package com.devhjs.mysmokinglog.presentation.main
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.devhjs.mysmokinglog.core.routing.MainNavGraph
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainScreenRoot() {
     val navController = rememberNavController()
