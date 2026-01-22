@@ -6,7 +6,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
-import com.devhjs.mysmokinglog.domain.usecase.health.GetHealthRecoveryUseCase
+import com.devhjs.mysmokinglog.domain.usecase.GetHealthRecoveryUseCase
 import com.devhjs.mysmokinglog.presentation.util.TimeFormatter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

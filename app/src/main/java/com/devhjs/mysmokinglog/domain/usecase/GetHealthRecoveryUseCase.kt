@@ -1,4 +1,4 @@
-package com.devhjs.mysmokinglog.domain.usecase.health
+package com.devhjs.mysmokinglog.domain.usecase
 
 import com.devhjs.mysmokinglog.domain.model.HealthMilestone
 import com.devhjs.mysmokinglog.domain.repository.HealthMilestoneRepository
