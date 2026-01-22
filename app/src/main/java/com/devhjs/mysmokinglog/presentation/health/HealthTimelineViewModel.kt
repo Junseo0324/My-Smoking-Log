@@ -25,13 +25,9 @@ class HealthTimelineViewModel @Inject constructor(
     private val _state = MutableStateFlow(HealthTimelineState())
     val state = _state.asStateFlow()
 
-    private var timer: CountDownTimer? = null
-
     init {
         loadData()
-        startTimer()
     }
-    
 
     private fun loadData() {
         viewModelScope.launch {
@@ -46,20 +42,5 @@ class HealthTimelineViewModel @Inject constructor(
                 ) 
             }
         }
-    }
-
-    private fun startTimer() {
-        timer = object : CountDownTimer(Long.MAX_VALUE, 60000) { // Update every minute
-            override fun onTick(millisUntilFinished: Long) {
-                loadData()
-            }
-
-            override fun onFinish() {}
-        }.start()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        timer?.cancel()
     }
 }
