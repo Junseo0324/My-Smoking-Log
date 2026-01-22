@@ -14,13 +14,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.devhjs.mysmokinglog.R
 import com.devhjs.mysmokinglog.presentation.component.HealthMilestoneItem
 import com.devhjs.mysmokinglog.presentation.designsystem.AppColors
@@ -29,13 +26,10 @@ import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HealthTimelineScreen(
-    modifier: Modifier = Modifier,
-    viewModel: HealthTimelineViewModel = hiltViewModel()
+    state: HealthTimelineState = HealthTimelineState(),
 ) {
-    val state by viewModel.state.collectAsState()
-
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(AppColors.Background)
             .padding(horizontal = 20.dp)
