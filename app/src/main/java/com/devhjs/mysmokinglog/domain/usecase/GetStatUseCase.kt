@@ -93,14 +93,27 @@ class GetStatUseCase @Inject constructor(
             // D. 스트릭(연속 기록) 계산
             
             // 최장 금연 시간 (시간 단위)
-            // 인접한 두 흡연 이벤트 사이의 최대 시간 간격을 찾음
+            // 인접한 두 흡연 이벤트 사이의 간격과, 마지막 흡연 ~ 현재 사이의 간격을 모두 비교
             var maxGapHours = 0L
-            if (allEvents.size >= 2) {
-                for (i in 0 until allEvents.size - 1) {
-                    val t1 = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents[i].timestamp), ZoneId.systemDefault())
-                    val t2 = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents[i+1].timestamp), ZoneId.systemDefault())
-                    val gap = ChronoUnit.HOURS.between(t1, t2)
-                    if (gap > maxGapHours) maxGapHours = gap
+            
+            if (allEvents.isNotEmpty()) {
+                // 1. 기록된 흡연 간의 간격 계산
+                if (allEvents.size >= 2) {
+                    for (i in 0 until allEvents.size - 1) {
+                        val t1 = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents[i].timestamp), ZoneId.systemDefault())
+                        val t2 = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents[i+1].timestamp), ZoneId.systemDefault())
+                        val gap = ChronoUnit.HOURS.between(t1, t2)
+                        if (gap > maxGapHours) maxGapHours = gap
+                    }
+                }
+                
+                // 2. 마지막 흡연 ~ 현재 시간 간격 계산
+                val lastEventTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents.last().timestamp), ZoneId.systemDefault())
+                val now = LocalDateTime.now()
+                val gapSinceLast = ChronoUnit.HOURS.between(lastEventTime, now)
+                
+                if (gapSinceLast > maxGapHours) {
+                    maxGapHours = gapSinceLast
                 }
             }
             
@@ -114,12 +127,19 @@ class GetStatUseCase @Inject constructor(
                 0
             }
 
-            // E. 평균 흡연 간격
-            val averageInterval = if (allEvents.size >= 2) {
-                val firstTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents.first().timestamp), ZoneId.systemDefault())
-                val lastTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(allEvents.last().timestamp), ZoneId.systemDefault())
+            // E. 평균 흡연 간격 (최근 7일 기준)
+            // 최근 일주일 데이터로만 계산합니다.
+            val oneWeekAgo = today.minusDays(7).atStartOfDay()
+            val recentEvents = allEvents.filter {
+                val eventTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(it.timestamp), ZoneId.systemDefault())
+                eventTime.isAfter(oneWeekAgo) || eventTime.isEqual(oneWeekAgo)
+            }
+
+            val averageInterval = if (recentEvents.size >= 2) {
+                val firstTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(recentEvents.first().timestamp), ZoneId.systemDefault())
+                val lastTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(recentEvents.last().timestamp), ZoneId.systemDefault())
                 val totalDurationMinutes = ChronoUnit.MINUTES.between(firstTime, lastTime)
-                totalDurationMinutes / (allEvents.size - 1)
+                totalDurationMinutes / (recentEvents.size - 1)
             } else {
                 null
             }

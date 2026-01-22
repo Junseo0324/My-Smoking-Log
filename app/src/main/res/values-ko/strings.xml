@@ -18,11 +18,11 @@
     <string name="stat_title">통계</string>
     <string name="stat_streak_title">흡연 지속 일수</string>
     <string name="stat_streak_desc">일 연속</string>
-    <string name="stat_avg_interval_title">평균 흡연 간격</string>
+    <string name="stat_avg_interval_title">최근 흡연 간격</string>
     <string name="stat_avg_interval_desc">분</string>
     <string name="stat_longest_break_title">최장 미흡연</string>
     <string name="stat_longest_break_desc">몸이 쉬고 있었던 가장 긴 시간이에요</string>
-    <string name="stat_cost_title">줄일 수 있었던 지출</string>
+    <string name="stat_cost_title">담배로 인한 지출</string>
     <string name="stat_cost_desc_format">총 %1$d 개비 (%2$d 갑)</string>
     <string name="stat_view_timeline">타임라인 보기</string>
     <string name="stat_health_recovery_desc">건강 회복 진행 상황을 확인하세요</string>

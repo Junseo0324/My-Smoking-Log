@@ -18,7 +18,7 @@
     <string name="stat_title">Stats</string>
     <string name="stat_streak_title">Days Smoked</string>
     <string name="stat_streak_desc">days straight</string>
-    <string name="stat_avg_interval_title">Avg Interval</string>
+    <string name="stat_avg_interval_title">Weekly Avg Interval</string>
     <string name="stat_avg_interval_desc">min</string>
     <string name="stat_longest_break_title">Longest Break</string>
     <string name="stat_longest_break_desc">Longest time without smoking</string>

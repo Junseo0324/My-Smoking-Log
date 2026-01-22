@@ -24,7 +24,9 @@ fun StatCardHeader(
     ) {
         Text(
             text = title,
-            style = AppTextStyles.titleTextBold.copy(fontSize = 18.sp, color = AppColors.White)
+            style = AppTextStyles.titleTextBold.copy(fontSize = 18.sp, color = AppColors.White),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
         )
         Spacer(modifier = Modifier.height(5.dp))
         Text(
