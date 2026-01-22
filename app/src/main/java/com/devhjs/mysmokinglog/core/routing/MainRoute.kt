@@ -5,4 +5,5 @@ sealed class MainRoute(val route: String) {
     data object Stat: MainRoute("stat")
     data object Setting: MainRoute("setting")
     data object License: MainRoute("license")
+    data object HealthTimeline: MainRoute("health_timeline")
 }

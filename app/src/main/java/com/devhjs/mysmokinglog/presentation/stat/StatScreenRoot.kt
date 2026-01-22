@@ -15,7 +15,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @Composable
 fun StatScreenRoot(
     modifier: Modifier = Modifier,
-    viewModel: StatViewModel = hiltViewModel()
+    viewModel: StatViewModel = hiltViewModel(),
+    onNavigateToHealthTimeline: () -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -35,6 +36,7 @@ fun StatScreenRoot(
     
     StatScreen(
         state = state,
+        onNavigateToHealthTimeline = onNavigateToHealthTimeline,
         modifier = modifier
     )
 }

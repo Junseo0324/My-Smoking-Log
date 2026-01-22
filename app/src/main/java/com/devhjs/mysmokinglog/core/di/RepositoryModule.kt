@@ -1,7 +1,9 @@
 package com.devhjs.mysmokinglog.core.di
 
 import com.devhjs.mysmokinglog.data.repository.SmokingRepositoryImpl
+import com.devhjs.mysmokinglog.data.repository.StaticHealthMilestoneRepositoryImpl
 import com.devhjs.mysmokinglog.data.repository.UserSettingRepositoryImpl
+import com.devhjs.mysmokinglog.domain.repository.HealthMilestoneRepository
 import com.devhjs.mysmokinglog.domain.repository.SmokingRepository
 import com.devhjs.mysmokinglog.domain.repository.UserSettingRepository
 import dagger.Binds
@@ -22,4 +24,9 @@ abstract class RepositoryModule {
     abstract fun bindSmokingRepository(
         impl: SmokingRepositoryImpl
     ): SmokingRepository
+
+    @Binds
+    abstract fun bindHealthMilestoneRepository(
+        impl: StaticHealthMilestoneRepositoryImpl
+    ): HealthMilestoneRepository
 }

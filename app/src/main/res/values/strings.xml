@@ -24,6 +24,8 @@
     <string name="stat_longest_break_desc">Longest time without smoking</string>
     <string name="stat_cost_title">Cost</string>
     <string name="stat_cost_desc_format">Total %1$d cigs (%2$d packs)</string>
+    <string name="stat_view_timeline">View Timeline</string>
+    <string name="stat_health_recovery_desc">Check your health recovery progress</string>
 
     <!-- Time Formatting -->
     <string name="time_just_now">Just now</string>
@@ -58,6 +60,25 @@
     <string name="settings_title">Settings</string>
     <string name="settings_subtitle">Configure your smoking goals</string>
     <string name="settings_daily_goal_title">Daily Goal</string>
+
+    <!-- Health Milestones -->
+    <string name="health_timeline_title">Health Recovery Timeline</string>
+    <string name="health_20m_title">20 minutes</string>
+    <string name="health_20m_desc">Heart rate and blood pressure drop to normal.</string>
+    <string name="health_12h_title">12 hours</string>
+    <string name="health_12h_desc">Carbon monoxide level in the blood drops to normal.</string>
+    <string name="health_2w_title">2 weeks ~ 3 months</string>
+    <string name="health_2w_desc">Blood circulation improves and lung function increases.</string>
+    <string name="health_1m_title">1 month ~ 9 months</string>
+    <string name="health_1m_desc">Coughing and shortness of breath decrease.</string>
+    <string name="health_1y_title">1 year</string>
+    <string name="health_1y_desc">Excess risk of coronary heart disease drops by half.</string>
+    <string name="health_5y_title">5 years</string>
+    <string name="health_5y_desc">Stroke risk is reduced to that of a nonsmoker.</string>
+    <string name="health_10y_title">10 years</string>
+    <string name="health_10y_desc">Lung cancer death rate is about half that of a smoker.</string>
+    <string name="health_15y_title">15 years</string>
+    <string name="health_15y_desc">Risk of coronary heart disease is that of a nonsmoker.</string>
     <string name="settings_daily_goal_subtitle">Target daily limit</string>
     <string name="settings_unit_1">1 cig</string>
     <string name="settings_unit_100">100 cigs</string>

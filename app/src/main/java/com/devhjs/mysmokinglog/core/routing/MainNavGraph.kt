@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.devhjs.mysmokinglog.presentation.health.HealthTimelineScreen
 import com.devhjs.mysmokinglog.presentation.home.HomeScreenRoot
 import com.devhjs.mysmokinglog.presentation.license.LicenseScreen
 import com.devhjs.mysmokinglog.presentation.setting.SettingScreenRoot
@@ -27,7 +28,11 @@ fun MainNavGraph(
             HomeScreenRoot()
         }
         composable(MainRoute.Stat.route) {
-            StatScreenRoot()
+            StatScreenRoot(
+                onNavigateToHealthTimeline = {
+                    navController.navigate(MainRoute.HealthTimeline.route)
+                }
+            )
         }
         composable(MainRoute.Setting.route) {
             SettingScreenRoot(
@@ -38,6 +43,9 @@ fun MainNavGraph(
         }
         composable(MainRoute.License.route) {
             LicenseScreen()
+        }
+        composable(MainRoute.HealthTimeline.route) {
+            HealthTimelineScreen()
         }
 
     }

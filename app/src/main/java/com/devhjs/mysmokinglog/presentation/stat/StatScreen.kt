@@ -3,6 +3,8 @@ package com.devhjs.mysmokinglog.presentation.stat
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -34,7 +36,8 @@ import com.devhjs.mysmokinglog.presentation.designsystem.AppTextStyles
 @Composable
 fun StatScreen(
     modifier: Modifier = Modifier,
-    state: StatState = StatState()
+    state: StatState = StatState(),
+    onNavigateToHealthTimeline: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -44,10 +47,21 @@ fun StatScreen(
             .verticalScroll(rememberScrollState())
     ) {
         Spacer(modifier = Modifier.height(30.dp))
-        Text(
-            text = stringResource(R.string.stat_title),
-            style = AppTextStyles.titleTextBold.copy(fontSize = 24.sp, color = AppColors.White)
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = stringResource(R.string.stat_title),
+                style = AppTextStyles.titleTextBold.copy(fontSize = 24.sp, color = AppColors.White)
+            )
+            Text(
+                text = stringResource(R.string.health_timeline_title),
+                style = AppTextStyles.normalTextRegular.copy(fontSize = 14.sp, color = AppColors.Gray80),
+                modifier = Modifier.clickable { onNavigateToHealthTimeline() }
+            )
+        }
         Spacer(modifier = Modifier.height(30.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
