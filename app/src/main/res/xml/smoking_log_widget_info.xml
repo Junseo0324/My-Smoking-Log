@@ -6,5 +6,5 @@
     android:resizeMode="horizontal|vertical"
     android:previewImage="@drawable/sl_icon"
     android:initialLayout="@layout/glance_default_loading_layout"
-    android:updatePeriodMillis="0"
+    android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen" />
