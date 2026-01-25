@@ -49,30 +49,25 @@ fun StatScreenRoot(
         )
     }
 
-    // 초기 진입 시 광고 로드
+    // 초기 진입 시 방문 횟수 증가 및 광고 로드
     LaunchedEffect(Unit) {
+        VisitCounter.increment() // 증가
+
         if (interstitialAd == null) {
             loadAd()
         }
     }
 
-    // 방문 횟수 체크 및 표시 로직 (SharedPreferences 등을 쓰지 않고 간단히 메모리 상에서 처리하려면 static 변수가 필요하거나, 
-    // 여기서는 화면이 재구성될 때마다 실행되므로 방문 시마다 체크하는 로직을 별도 객체 없이 구현하기 위해 
-    // 방문 횟수를 저장할 곳이 필요함. 하지만 ScreenRoot는 매번 그려질 수 있음. 
-    // 간단하게 "화면에 진입할 때마다"를 구현하기 위해 static 변수 대용으로 companion object나 외부 변수를 쓸 수 없으니
-    // 매번 로드/표시 시도 로직을 수행.
-    // 기존 로직(3번마다)을 유지하려면 별도 저장소가 필요하므로, 간단히 "VisitCounter" 객체를 파일 최상위에 private으로 선언하여 사용.
+    // 광고가 로드되었고, 방문 횟수가 충족되면 광고 표시
+    LaunchedEffect(interstitialAd) {
+        val shouldShow = VisitCounter.shouldShowAd()
+        val hasAd = interstitialAd != null
 
-    LaunchedEffect(Unit) {
-        VisitCounter.increment()
-        if (VisitCounter.shouldShowAd()) {
-            if (interstitialAd != null) {
-                activity?.let { interstitialAd?.show(it) }
+        if (shouldShow && hasAd) {
+            activity?.let {
+                interstitialAd?.show(it)
                 interstitialAd = null // 표시 후 제거
                 VisitCounter.reset()
-                loadAd() // 다음을 위해 리로드
-            } else {
-                loadAd() // 없으면 로드 시도
             }
         }
     }
