@@ -24,9 +24,6 @@
 ---
 
 ## 🛠 기술 스택 (Tech Stack)
-
-이 프로젝트는 유지보수성과 확장성을 고려하여 **Modern Android Development (MAD)** 가이드를 따릅니다.
-
 - **Language**: Kotlin
 - **UI Toolkit**: [Jetpack Compose](https://developer.android.com/jetbrains/compose) (Material3 Design)
 - **Architecture**: Clean Architecture (Presentation - Domain - Data) + MVVM Pattern
@@ -54,23 +51,3 @@
     -   `Mapper`: Entity와 Domain Model 간의 변환을 담당.
 
 ---
-
-## 🧪 테스트 (Testing)
-핵심 비즈니스 로직과 데이터 계층의 무결성을 검증하기 위해 **JUnit4**와 **MockK**, **Coroutines Test**를 사용한 단위 테스트(Unit Test)를 작성했습니다.
-
-### 1. [GetStatUseCaseTest](app/src/test/java/com/devhjs/mysmokinglog/domain/usecase/GetStatUseCaseTest.kt)
-**통계 계산 로직 검증**
-- `흡연 기록`과 `유저 설정(담배 가격 등)` 데이터를 결합하여 정확한 통계를 산출하는지 테스트합니다.
-- 총 흡연량, 이번 달 비용, 주간/일간 분포, 스트릭(Streak) 계산의 정확성을 검증합니다.
-- 데이터가 없을 때 0으로 초기화되는지 확인합니다.
-- **Reactive Data**: `SettingRepository`와 `SmokingRepository`의 Flow 데이터 결합을 Mocking하여 테스트합니다.
-
-### 2. [SaveSettingsUseCaseTest](app/src/test/java/com/devhjs/mysmokinglog/domain/usecase/SaveSettingsUseCaseTest.kt)
-**설정 저장 유스케이스 검증**
-- 사용자가 입력한 설정값이 Repository를 통해 정상적으로 저장되는지 검증합니다.
-- 저장 과정에서 예외가 발생할 경우 `Result.Error`를 반환하여 에러 처리가 가능한지 확인합니다.
-
-### 3. [SmokingRepositoryImplTest](app/src/test/java/com/devhjs/mysmokinglog/data/repository/SmokingRepositoryImplTest.kt)
-**데이터 저장소 구현체 검증**
-- Domain Model(`Smoking`)이 Entity로 올바르게 매핑되어 DAO에 전달되는지 확인합니다.
-- `SmokingDao.insert` 호출 시 데이터 변조 없이 그대로 전달되는지 검증합니다.
